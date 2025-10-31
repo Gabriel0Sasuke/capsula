@@ -1,0 +1,8 @@
+# Ativar o rewrite
+RewriteEngine On
+
+# Definir a pasta raiz do projeto
+RewriteBase /
+
+# Redirecionar páginas da pasta /pages para URL simples
+RewriteRule ^([a-zA-Z0-9_-]+)$ pages/$1.php [L]

@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  background-color: #fff4df;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(14px, 1vw, 18px);
+  overflow-x: hidden;
+}
+header {
+  width: 100%;
+  height: 14vh;
+  background-color: #69563c;
+  font-family: "Quintessential", cursive;
+  color: #dbd178;
+  font-size: clamp(2rem, 2.6vw, 3.5rem);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3vw;
+}
+#sidebar-toggle {
+  background: none;
+  border: none;
+  color: #1e1e1e;
+  font-size: clamp(2.8rem, 4vw, 4.8rem);
+  font-weight: 900;
+  cursor: pointer;
+  position: absolute;
+  top: 1vh;
+  left: 1.5vw;
+  z-index: 1002;
+  transition: color 0.3s;
+}
+
+#sidebar-toggle.toggled {
+  color: #d8d08b;
+}
+.sidebar {
+  height: 100%;
+  width: clamp(240px, 20vw, 300px);
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  background-color: #3d372dea;
+  overflow-x: hidden;
+  transition: transform 0.5s;
+  padding-top: 14vh;
+  transform: translateX(-100%);
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar i {
+  font-size: 2rem;
+  color: #fff4df;
+  margin-right: 0.8rem;
+  vertical-align: middle;
+}
+
+.sidebar a {
+  padding: 1.5rem 0 1.5rem 2.5rem;
+  font-size: clamp(1.2rem, 1.6vw, 1.8rem);
+  color: #fff4df;
+  display: block;
+  transition: 0.3s;
+  line-height: 1.5;
+  position: relative;
+}
+
+.sidebar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  width: 80%;
+  height: 0.3rem;
+  background-color: #d8d08b;
+}
+
+.sidebar a:hover {
+  color: #A98C78;
+}
+
+.sidebar a:hover i {
+  color: #A98C78;
+}
+main {
+  width: 100%;
+  min-height: 86vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+footer {
+  width: 100vw;
+  height: 5vh;
+  background-color: #69563c;
+  font-size: clamp(1rem, 1vw, 1.25rem);
+  font-weight: 600;
+  color: #dbd178;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+aside {
+  background-color: #3d372d;
+  width: 20%;
+  min-height: 86vh;
+  padding: 1rem;
+  color: #fff4df;
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
+  border-top: 2px solid #A98C78;
+  border-right: 2px solid #A98C78;
+  border-bottom: 2px solid #A98C78;
+  align-items: center;
+}
+aside div {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #A98C78;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 1.4em;
+  transition: 0.2s ease-in-out;
+}
+aside div i {
+    margin-right: 0.5rem !important;
+    font-size: 2vw !important;
+    vertical-align: middle !important;
+}
+section {
+  background-color: #3d372d;
+  width: 80%;
+  min-height: 86vh;
+  padding: 1rem;
+  color: #fff4df;
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
+    border-top: 2px solid #A98C78;
+  border-bottom: 2px solid #A98C78;
+}
+section div{
+    display: none;
+}
+aside div:hover {
+  color: #A98C78;
+  transition: 0.2s ease-in-out;
+}
+.selected {
+  color: #A98C78;
+}
+.divLigada{
+    display: block;
+}
+.campo{
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+}
+.campo input{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    border-radius: 6px;
+    border: none;
+}
+.campo textarea{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+}
+button[type ="submit"]{
+    width: 100%;
+    background-color: #A98C78;
+    color: #fff4df;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/* === Botão Upload estilo Blob Gooey === */
+#upload.blob-btn {
+  --main-color: green;       /* cor ativa */
+  --text-color: #fff4df;     /* cor do texto */
+  --bg-start: #A98C78;       /* cor inicial */
+  --bg-active: green;        /* cor quando enviado */
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: 1rem 2.4rem;
+  margin: 1vh 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--bg-start);
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+/* conteúdo (ícone + texto) */
+#upload.blob-btn i,
+#upload.blob-btn .upload-text {
+  position: relative;
+  z-index: 10;
+}
+
+/* borda - começa invisível */
+#upload.blob-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  z-index: 2;
+  transition: border-color 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+
+/* camada interna */
+#upload .blob-btn__inner {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: var(--bg-start);
+  transition: background 0.4s ease;
+}
+
+/* container das bolhas */
+#upload .blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url('#goo');
+}
+
+/* bolhas */
+#upload .blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 25%;
+  height: 100%;
+  background: var(--main-color);
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.4);
+  transition: transform 1.5s cubic-bezier(.2, .9, .3, 1);
+}
+
+#upload .blob-btn__blob:nth-child(1) { left: 0%;    transition-delay: 0s; }
+#upload .blob-btn__blob:nth-child(2) { left: 30%;   transition-delay: 0.1s; }
+#upload .blob-btn__blob:nth-child(3) { left: 60%;   transition-delay: 0.2s; }
+#upload .blob-btn__blob:nth-child(4) { left: 90%;   transition-delay: 0.3s; }
+
+/* estado ativo (upload feito) */
+#upload.uploaded {
+  color: var(--text-color);
+  background-color: var(--bg-active);
+  transform: scale(1.02);
+}
+
+/* borda aparece suavemente após upload */
+#upload.uploaded::before {
+  border-color: var(--main-color);
+  opacity: 1;
+}
+
+/* bolhas sobem e se fundem */
+#upload.uploaded .blob-btn__blob {
+  transform: translate3d(0, 0, 0) scale(1.4);
+}
+
+#upload i{
+    font-size: 2rem;
+}
+#preview{
+    display: block;
+    width: 15vw;
+    height: 30vh;
+    background-color: white;
+    border: black solid 1px;
+}
+#preview img {
+  display: block;
+  width: 100%;
+  max-width: 420px; /* limita mesmo se o container for maior */
+  height: auto;
+  max-height: 50vh;
+  object-fit: contain;
+}
+#login{
+    width: 60vw;
+    height: 86vh;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 10px;
+}
+.cards{
+    width: 100%;
+    height: 25vh;
+    background-color: #A98C78;
+    display: flex;
+    border-radius: 12px;
+    margin-top: 2vh;
+}

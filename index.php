@@ -1,5 +1,10 @@
 <?php 
 session_start();
+
+require_once 'scripts/conn.php';
+
+$sql = 'SELECT * FROM post ORDER BY data_publicacao DESC';
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Capsula - Home</title>
 
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
@@ -21,8 +26,7 @@ session_start();
         <a href=""><i class="material-icons-round">home</i>Início</a>
         <a href="#"><i class="material-icons-round">info</i>Sobre o Projeto</a>
         <a href="#"><i class="material-icons-round">rate_review</i>Questionário</a>
-        <a href="#"><i class="material-icons-round">login</i>Login</a>
-        <a href="#"><i class="material-icons-round">person_add</i>Cadastro</a>
+        <a href="pages/admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>
     
     <button id="sidebar-toggle">☰</button>
@@ -33,26 +37,42 @@ session_start();
         <section class="blog">
             <h1>Novidades da capsula!</h1>
 
-            <article class="noticias">
-                <img src="assets/img/ui/placeholder.png" alt="" class="news-img">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit alias earum blanditiis reprehenderit excepturi error corrupti iure voluptate magni accusantium quis obcaecati voluptatibus praesentium in ab velit, dicta ex. Quaerat.
-                Dignissimos suscipit, et officiis commodi asperiores fugiat id sapiente, dolorem quos pariatur fugit sed, porro alias. Quo dignissimos obcaecati culpa fuga laudantium voluptates, impedit repudiandae possimus nostrum sapiente reiciendis eius?</p>
+            <?php if ($result && $result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <?php
+                $img = $row['imagem'];
+                $texto = $row['conteudo'];
+                $dataRaw = $row['data_publicacao'];
 
-                <div class="news-data" id="news-data">20/12/2007</div>
-            </article>
+                $imgSrc = 'assets/img/ui/placeholder.png';
+                if ($img) {
+                    if (preg_match('#^(https?:)?//#', $img) || strpos($img, '/') === 0) {
+                    $imgSrc = $img;
+                    } elseif (strpos($img, 'uploads/') === 0) {
+                    $imgSrc = $img;
+                    } else {
+                    $imgSrc = 'uploads/' . $img;
+                    }
+                }
 
-            <article class="noticias">
-                <img src="assets/img/ui/placeholder.png" alt="" class="news-img">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit alias earum blanditiis reprehenderit excepturi error corrupti iure voluptate magni accusantium quis obcaecati voluptatibus praesentium in ab velit, dicta ex. Quaerat.
-                Dignissimos suscipit, et officiis commodi asperiores fugiat id sapiente, dolorem quos pariatur fugit sed, porro alias. Quo dignissimos obcaecati culpa fuga laudantium voluptates, impedit repudiandae possimus nostrum sapiente reiciendis eius?</p>
-
-                <div class="news-data" id="news-data">20/12/2007</div>
-            </article>
+                $dataFmt = $dataRaw ? date('d/m/Y', strtotime($dataRaw)) : '';
+                ?>
+                <article class="noticias">
+                <img src="<?php echo htmlspecialchars($imgSrc); ?>" alt="" class="news-img">
+                <p><?php echo nl2br(htmlspecialchars($texto)); ?></p>
+                <?php if ($dataFmt): ?>
+                    <div class="news-data" id="news-data"><?php echo htmlspecialchars($dataFmt); ?></div>
+                <?php endif; ?>
+                </article>
+            <?php endwhile; ?>
+            <?php else: ?>
+            <p>Nenhum post encontrado.</p>
+            <?php endif; ?>
         </section>
 
         <div class="container-direita">
             <section class="relogio">
-                <h1>FALTAM <strong>99</strong> DIAS PARA O EVENTO</h1>
+                <h1>FALTAM <strong id="dias_evento">99</strong> DIAS PARA O EVENTO</h1>
                 <div id="clock">00:00:00</div>
             </section>
 
@@ -64,5 +84,6 @@ session_start();
     <footer>capsula 2015 - 2025</footer>
 
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/relogio.js"></script>
 </body>
 </html>

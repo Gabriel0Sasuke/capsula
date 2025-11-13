@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  background-color: #fff4df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(14px, 1vw, 18px);
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  height: 10vh;
+  background-color: #69563c;
+  font-family: "Quintessential", cursive;
+  color: #dbd178;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3vw;
+}
+
+#sidebar-toggle {
+  background: none;
+  border: none;
+  color: #1e1e1e;
+  font-size: clamp(2.8rem, 4vw, 4.8rem);
+  font-weight: 900;
+  cursor: pointer;
+  position: absolute;
+  top: 1vh;
+  left: 7vw;
+  z-index: 1002;
+  transition: color 0.3s;
+}
+
+#sidebar-toggle.toggled {
+  color: #d8d08b;
+}
+
+.sidebar {
+  height: 100%;
+  width: clamp(240px, 20vw, 300px);
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  background-color: #3d372dea;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 14vh;
+  transform: translateX(-100%);
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar i {
+  font-size: 2rem;
+  color: #fff4df;
+  margin-right: 0.8rem;
+  vertical-align: middle;
+}
+
+.sidebar a {
+  padding: 1.5rem 0 1.5rem 2.5rem;
+  font-size: clamp(1.2rem, 1.6vw, 1.8rem);
+  color: #fff4df;
+  display: block;
+  transition: 0.3s;
+  line-height: 1.5;
+  position: relative;
+}
+
+.sidebar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  width: 80%;
+  height: 0.3rem;
+  background-color: #d8d08b;
+}
+
+.sidebar a:hover {
+  color: #A98C78;
+}
+
+.sidebar a:hover i {
+  color: #A98C78;
+}
+
+main {
+  width: 80%;
+  min-height: 70vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(3rem, 8vw, 10rem);
+  flex-grow: 1;
+}
+
+.blog {
+  background-color: #3d372d;
+  width: 90%;
+  height: 50vh;
+  overflow-y: auto;
+  margin: 2rem 0 0 2rem;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  color: #fff4df;
+  box-shadow: 0 0 1.25rem 0.6rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.blog::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.blog::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blog::-webkit-scrollbar-thumb {
+  background: #796b53;
+  border-radius: 1rem;
+}
+
+.blog h1 {
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+.noticias {
+  background-color: #796b53;
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 0.25rem solid #1e1e1e;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.5;
+}
+
+.noticias p {
+  text-align: start;
+  font-size: clamp(1rem, 1vw, 1.1rem);
+  font-weight: 400;
+}
+
+.noticias .news-img {
+  height: 6rem;
+  width: 6rem;
+  background-color: #A98C78;
+  border-radius: 15%;
+  float: inline-start;
+  margin: 0 1rem 0.2rem 0;
+}
+
+.news-data {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #fff4df;
+  float: inline-end;
+}
+
+.container-direita {
+  width: 40%;
+  height: 70vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.relogio {
+  background-color: #3d372d;
+  width: 100%;
+  height: 50vh;
+  margin: 2rem 2rem 0 0;
+  padding: 3rem;
+  border-radius: 1rem;
+  color: #fff4df;
+  box-shadow: 0 0 1rem 0.6rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.relogio:hover {
+  transform: scale(1.03);
+}
+
+.relogio h1 {
+  font-size: clamp(1.6rem, 2.2vw, 2.5rem);
+  margin: 2rem;
+}
+
+.relogio h1 strong {
+  color: #dbd178;
+}
+
+#btn-quest {
+  background-color: #A98C78;
+  color: #1e1e1e;
+  border: 0.4rem solid #796b53;
+  width: 85%;
+  height: 15%;
+  margin: 4rem 2rem 0 0;
+  border-radius: 1.25rem;
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#btn-quest:hover {
+  transform: scale(1.08);
+  background-color: #9b7e6b;
+  cursor: pointer;
+}
+
+#clock {
+  width: 100%;
+  display: flex;
+  padding-top: 3rem;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 600;
+}
+
+footer {
+  width: 100vw;
+  height: 5vh;
+  background-color: #69563c;
+  font-size: clamp(1rem, 1vw, 1.25rem);
+  font-weight: 600;
+  color: #dbd178;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}

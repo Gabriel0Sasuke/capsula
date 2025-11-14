@@ -94,6 +94,8 @@ $result = $conn->query($sql);
 
     <footer>capsula 2015 - 2025</footer>
 
+    <div id="btn-timer"></div>
+
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/relogio.js"></script>
 </body>

@@ -27,7 +27,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 3vw;
+  padding-right: 7vw;
 }
 
 #sidebar-toggle {
@@ -102,7 +102,7 @@ header {
 }
 
 main {
-  width: 80%;
+  width: 100%;
   min-height: 70vh;
   padding: 2rem;
   display: flex;
@@ -118,7 +118,7 @@ main {
   width: 90%;
   height: 50vh;
   overflow-y: auto;
-  margin: 2rem 0 0 2rem;
+  margin: 2rem 0 2rem 0;
   padding: 2rem;
   border-radius: 0.8rem;
   color: #fff4df;
@@ -261,4 +261,13 @@ footer {
   align-items: center;
   justify-content: center;
   bottom: 0;
+}
+
+#btn-timer{
+  height: 10vh;
+  width: 5vw;
+  position: absolute;
+  background-color: #A98C78;
+  top: 25%;
+  right: 0;
 }

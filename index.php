@@ -83,21 +83,23 @@ $result = $conn->query($sql);
 
         <div class="container-direita">
             <section class="relogio">
+                <div id="btn-close">X</div>
                 <h1>FALTAM <strong id="dias_evento">99</strong> DIAS PARA O EVENTO</h1>
                 <div id="clock">00:00:00</div>
             </section>
 
-            <button id="btn-quest">Questionário</button>
         </div>
+        <button id="btn-quest">Questionário</button>
 
     </main>
 
     <footer>capsula 2015 - 2025</footer>
 
-    <div id="btn-timer"></div>
+    <div id="btn-timer"><p id="fechar">click</p></div>
 
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/relogio.js"></script>
+    <script src="assets/js/timer_click.js"></script>
 </body>
 
 </html>

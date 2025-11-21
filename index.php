@@ -5,6 +5,14 @@ require_once 'scripts/conn.php';
 
 $sql = 'SELECT * FROM post ORDER BY data_publicacao DESC';
 $result = $conn->query($sql);
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+$celular = false;
+if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', $user_agent)) {
+    $celular = false;
+} else {
+    $celular = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +24,8 @@ $result = $conn->query($sql);
     <title>Capsula - Home</title>
 
     <?php
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-    if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', $user_agent)) {
+    if ($celular == false) {
     ?>
         <link rel="stylesheet" href="assets/css/index.css">
     <?php  } else { ?>
@@ -80,26 +87,38 @@ $result = $conn->query($sql);
                 <p>Nenhum post encontrado.</p>
             <?php endif; ?>
         </section>
-
         <div class="container-direita">
             <section class="relogio">
-                <div id="btn-close">X</div>
+                <?php if ($celular) { ?>
+                    <div id="btn-close">
+                        <button id="fechar"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="100%" fill="#d8d08b"><path d="m300-258-42-42 180-180-180-179 42-42 180 180 179-180 42 42-180 179 180 180-42 42-179-180-180 180Z"/></svg></button>
+                    </div>
+                <?php } ?>
                 <h1>FALTAM <strong id="dias_evento">99</strong> DIAS PARA O EVENTO</h1>
                 <div id="clock">00:00:00</div>
             </section>
-
+            <?php if ($celular) { ?>
         </div>
         <button id="btn-quest">Questionário</button>
+    <?php } else { ?>
+        <button id="btn-quest">Questionário</button>
+        </div>
+    <?php } ?>
 
     </main>
 
-    <footer>capsula 2015 - 2025</footer>
-
-    <div id="btn-timer"><p id="fechar">click</p></div>
-
-    <script src="assets/js/sidebar.js"></script>
+    
+    <?php
+    if ($celular) {
+        ?>
+        <div id="btn-timer">
+            <p>click</p>
+        </div>
+        <script src="assets/js/timer_click.js"></script>
+        <?php } ?>
+        <footer>capsula 2015 - 2025</footer>
+        <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/relogio.js"></script>
-    <script src="assets/js/timer_click.js"></script>
 </body>
 
 </html>

@@ -2,9 +2,55 @@
 session_start();
 
 require_once 'scripts/conn.php';
+//Implementação de detecção de dispostivo pra contagem de visitantes
+if(isset($_SESSION['visited'])) {
+    // Usuário já foi contado nesta sessão
+} else {
+    // Novo visitante nesta sessão
+    $user_ip = $_SERVER['REMOTE_ADDR'] ?? 'IP desconhecido';
+    $user_agent_completo = $_SERVER['HTTP_USER_AGENT'] ?? 'Navegador desconhecido';
+    
+    // Detecta o Navegador (Ordem importa pois Chrome inclui Safari, Edge inclui Chrome, etc)
+    $user_navegador = 'Outro';
+    if (stripos($user_agent_completo, 'Edg') !== false) {
+        $user_navegador = 'Edge';
+    } elseif (stripos($user_agent_completo, 'OPR') !== false || stripos($user_agent_completo, 'Opera') !== false) {
+        $user_navegador = 'Opera';
+    } elseif (stripos($user_agent_completo, 'Chrome') !== false) {
+        $user_navegador = 'Chrome';
+    } elseif (stripos($user_agent_completo, 'Firefox') !== false) {
+        $user_navegador = 'Firefox';
+    } elseif (stripos($user_agent_completo, 'Safari') !== false) {
+        $user_navegador = 'Safari';
+    }
 
+    // Detecta o Sistema Operacional do Cliente
+    $user_sistema_operacional = 'Outro';
+    if (preg_match('/android/i', $user_agent_completo)) {
+        $user_sistema_operacional = 'Android';
+    } elseif (preg_match('/iphone|ipad|ipod/i', $user_agent_completo)) {
+        $user_sistema_operacional = 'iOS';
+    } elseif (preg_match('/windows/i', $user_agent_completo)) {
+        $user_sistema_operacional = 'Windows';
+    } elseif (preg_match('/linux/i', $user_agent_completo)) {
+        $user_sistema_operacional = 'Linux';
+    } elseif (preg_match('/macintosh|mac os x/i', $user_agent_completo)) {
+        $user_sistema_operacional = 'Mac OS';
+    }
+
+    $stmt = $conn->prepare("INSERT INTO visitas (user_ip, user_navegador, user_sistema_operacional) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $user_ip, $user_navegador, $user_sistema_operacional);
+    $stmt->execute();
+    $stmt->close();
+
+    $_SESSION['visited'] = true; // Marca que o usuário já foi contado
+}
+
+//Pegar Dados da tabela post
 $sql = 'SELECT * FROM post ORDER BY data_publicacao DESC';
 $result = $conn->query($sql);
+
+//Implementação de detecção de dispostivos pra responsividade
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 $celular = false;
 if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', $user_agent)) {

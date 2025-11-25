@@ -4,7 +4,6 @@
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.8.0.6908
 -- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -51,8 +50,17 @@ CREATE TABLE IF NOT EXISTS `respostas` (
   CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`quest_id`) REFERENCES `quest` (`quest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Copiando estrutura para tabela capsula.visitas
+CREATE TABLE IF NOT EXISTS `visitas` (
+  `visitaId` int NOT NULL AUTO_INCREMENT,
+  `user_ip` varchar(255) DEFAULT NULL,
+  `user_navegador` varchar(255) DEFAULT NULL,
+  `user_sistema_operacional` varchar(255) DEFAULT NULL,
+  `visit_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`visitaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+SELECT * from visitas;
 -- Exportação de dados foi desmarcado.
-
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

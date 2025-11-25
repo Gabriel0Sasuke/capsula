@@ -1,6 +1,7 @@
 .sobre-main{
     width: 80%;
-    height: 75vh;
+    height: auto;
+    padding-bottom: 3vh;
 }
 
 .sobre-container{

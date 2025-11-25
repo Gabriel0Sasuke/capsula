@@ -12,6 +12,12 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 } else {
     $celular = true;
 }
+
+// Dados pras tabelas de estatísticas
+$visitas = $conn->query("SELECT COUNT(*) FROM visitas");
+$formularios = $conn->query("SELECT COUNT(*) FROM quest");
+$nav_data = $conn->query("SELECT user_navegador, COUNT(*) as total FROM visitas GROUP BY user_navegador");
+$device_data = $conn->query("SELECT user_sistema_operacional, COUNT(*) as total FROM visitas GROUP BY user_sistema_operacional");
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +70,8 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
                 <div id="div_inicio">
                     <h1>Bem-vindo ao Painel de Admin, <?php echo $_SESSION['nome_admin']; ?></h1>
                     <div class="card-row">
-                        <div class="cards">Acessos Totais <img src="../assets/img/ui/bar_chart.svg" id="grafico-barra"> <strong>13</strong></div>
-                        <div class="cards">Formulários Enviados <img src="../assets/img/ui/edit_document.svg" id="grafico-barra"> <strong>13</strong></div>
+                        <div class="cards">Acessos Totais <img src="../assets/img/ui/bar_chart.svg" id="grafico-barra"> <strong><?php echo $visitas->fetch_row()[0]; ?></strong></div>
+                        <div class="cards">Formulários Enviados <img src="../assets/img/ui/edit_document.svg" id="grafico-barra"> <strong><?php echo $formularios->fetch_row()[0]; ?></strong></div>
                     </div>
                     <div class="card-row">
                         <div class="cards-grande">Navegador mais Utilizado<br>
@@ -280,25 +286,42 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
           const ctxNav = document.getElementById('myChartNav');
           const ctxDevice = document.getElementById('myChartDevice');
 
+          // Dados vindos do PHP
+          <?php
+            $navLabels = [];
+            $navData = [];
+            while($row = $nav_data->fetch_assoc()) {
+                $navLabels[] = $row['user_navegador'];
+                $navData[] = $row['total'];
+            }
+
+            $deviceLabels = [];
+            $deviceData = [];
+            while($row = $device_data->fetch_assoc()) {
+                $deviceLabels[] = $row['user_sistema_operacional'];
+                $deviceData[] = $row['total'];
+            }
+          ?>
+
           new Chart(ctxNav, {
             type: 'pie', // Tipo do gráfico: 'pie' (pizza)
             
             data: {
-                // AQUI: Mude os nomes dos navegadores
-                labels: ['Google Chrome', 'Safari', 'Firefox', 'Edge'],
+                labels: <?php echo json_encode($navLabels); ?>,
                 
                 datasets: [{
                     label: 'Acessos', // Texto que aparece ao passar o mouse
                     
-                    // AQUI: Mude os números (somente para teste)
-                    data: [70, 20, 10, 5], 
+                    data: <?php echo json_encode($navData); ?>, 
                     
                     // AQUI: Mude as cores das fatias
                     backgroundColor: [
                         '#FFC107', // Amarelo (Chrome)
                         '#36A2EB', // Azul (Safari)
                         '#FF6384', // Vermelho/Rosa (Firefox)
-                        '#4BC0C0'  // Verde água (Edge)
+                        '#4BC0C0',  // Verde água (Edge)
+                        '#9966FF',
+                        '#FF9F40'
                     ],
                     borderColor: '#ffffff', // Cor da borda entre as fatias
                     borderWidth: 2
@@ -328,19 +351,20 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             type: 'pie', // Tipo do gráfico: 'pie' (pizza)
             
             data: {
-                // AQUI: Mude os nomes dos navegadores
-                labels: ['Mobile', 'Desktop'],
+                labels: <?php echo json_encode($deviceLabels); ?>,
                 
                 datasets: [{
                     label: 'Acessos', // Texto que aparece ao passar o mouse
                     
-                    // AQUI: Mude os números (somente para teste)
-                    data: [70, 20], 
+                    data: <?php echo json_encode($deviceData); ?>, 
                     
                     // AQUI: Mude as cores das fatias
                     backgroundColor: [
-                        '#36A2EB', // Azul (Mobile)
-                        '#FF6384', // Vermelho/Rosa (Desktop)
+                        '#36A2EB', // Azul
+                        '#FF6384', // Vermelho/Rosa
+                        '#FFCE56', // Amarelo
+                        '#4BC0C0', // Verde
+                        '#9966FF'  // Roxo
                     ],
                     borderColor: '#ffffff', // Cor da borda entre as fatias
                     borderWidth: 2

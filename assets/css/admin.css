@@ -4,6 +4,7 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
 body {
   background-color: #fff4df;
   min-height: 100vh;
@@ -13,6 +14,7 @@ body {
   font-size: clamp(14px, 1vw, 18px);
   overflow-x: hidden;
 }
+
 header {
   width: 100%;
   height: 14vh;
@@ -28,6 +30,7 @@ header {
   justify-content: flex-end;
   padding-right: 3vw;
 }
+
 #sidebar-toggle {
   background: none;
   border: none;
@@ -45,6 +48,7 @@ header {
 #sidebar-toggle.toggled {
   color: #d8d08b;
 }
+
 .sidebar {
   height: 100%;
   width: clamp(240px, 20vw, 300px);
@@ -172,7 +176,7 @@ aside div:hover {
     display: block;
     width: 100%;
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 2rem 0 2rem 0;
     border-radius: 0.5rem;
     border: none;
     font-size: clamp(1rem, 1.2vw, 1.5rem);
@@ -192,14 +196,16 @@ aside div:hover {
 button[type ="submit"]{
     width: 100%;
     background-color: #A98C78;
+    border: #292217 solid 2px;
     color: #fff4df;
     padding: 0.8rem 1.5rem;
-    border: none;
     border-radius: 0.5rem;
     font-size: clamp(1rem, 1.2vw, 1.5rem);
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 5.7rem;
 }
+
 /* === Botão Upload estilo Blob Gooey === */
 #upload.blob-btn {
   --main-color: green;       /* cor ativa */
@@ -331,4 +337,41 @@ button[type ="submit"]{
     display: flex;
     border-radius: 12px;
     margin-top: 2vh;
+}
+
+/* formatação do formulário */
+.form-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.formulario{
+    border-radius: 5%;
+    background-color: #423a2b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 60vw;
+}
+
+.login-container label {
+    margin-bottom: 1rem;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    color: #fff8ea;
 }

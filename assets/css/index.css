@@ -7,6 +7,7 @@
 
 body {
   background-color: #fff4df;
+  background-image: url(../img/content/old-paper-background.jpg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -164,12 +165,15 @@ main {
   border: 0.25rem solid #1e1e1e;
   font-size: clamp(0.9rem, 1vw, 1rem);
   line-height: 1.5;
+  position: relative;
+  padding-bottom: 2.5rem;
 }
 
 .noticias p {
-  text-align: start;
+  float: inline-start;
   font-size: clamp(1rem, 1vw, 1.1rem);
   font-weight: 400;
+  margin: 0;
 }
 
 .noticias .news-img {
@@ -182,10 +186,11 @@ main {
 }
 
 .news-data {
-  margin-top: 0.6rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
   font-size: 0.9rem;
   color: #fff4df;
-  float: inline-end;
 }
 
 .container-direita {

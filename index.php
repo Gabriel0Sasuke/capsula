@@ -24,7 +24,6 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <title>Capsula - Home</title>
 
     <?php
-
     if ($celular == false) {
     ?>
         <link rel="stylesheet" href="assets/css/index.css">
@@ -41,9 +40,9 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 <body>
 
     <div id="sidebar" class="sidebar">
-        <a href=""><i class="material-icons-round">home</i>Início</a>
+        <a href="index.php"><i class="material-icons-round">home</i>Início</a>
         <a href="#"><i class="material-icons-round">info</i>Sobre o Projeto</a>
-        <a href="#"><i class="material-icons-round">rate_review</i>Questionário</a>
+        <a href="pages/quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
         <a href="pages/admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>
 
@@ -91,7 +90,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             <section class="relogio">
                 <?php if ($celular) { ?>
                     <div id="btn-close">
-                        <button id="fechar"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="100%" fill="#d8d08b"><path d="m300-258-42-42 180-180-180-179 42-42 180 180 179-180 42 42-180 179 180 180-42 42-179-180-180 180Z"/></svg></button>
+                        <button id="fechar"><svg xmlns="http://www.w3.org/2000/svg" height="60%" viewBox="0 -960 960 960" width="60%" fill="#d8d08b"><path d="m300-258-42-42 180-180-180-179 42-42 180 180 179-180 42 42-180 179 180 180-42 42-179-180-180 180Z"/></svg></button>
                     </div>
                 <?php } ?>
                 <h1>FALTAM <strong id="dias_evento">99</strong> DIAS PARA O EVENTO</h1>
@@ -99,9 +98,9 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             </section>
             <?php if ($celular) { ?>
         </div>
-        <button id="btn-quest">Questionário</button>
+        <button id="btn-quest" onclick="location.href='pages/quest.php'">Questionário</button>
     <?php } else { ?>
-        <button id="btn-quest">Questionário</button>
+        <button id="btn-quest" onclick="location.href='pages/quest.php'">Questionário</button>
         </div>
     <?php } ?>
 
@@ -112,12 +111,12 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     if ($celular) {
         ?>
         <div id="btn-timer">
-            <p>click</p>
+            <p>&#x23F1;</p>
         </div>
         <script src="assets/js/timer_click.js"></script>
         <?php } ?>
-        <footer>capsula 2015 - 2025</footer>
-        <script src="assets/js/sidebar.js"></script>
+    <footer>capsula 2015 - 2025</footer>
+    <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/relogio.js"></script>
 </body>
 

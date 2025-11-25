@@ -1,0 +1,119 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.quest-form {
+    background-color: #3d372d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #eee;
+}
+
+.quest-form h2 {
+    font-family: 'Quintessential', cursive;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    color: #fff;
+}
+
+.quest-form p {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #fff;
+    color: #333;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+.radio-group label {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 25px;
+    background-color: #50493f;
+    border: 1px solid #6a6156;
+    color: #ccc;
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.radio-group label:hover {
+    background-color: #6a6156;
+    border-color: #888;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #ccc;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: #c0b49d;
+    color: #2b2722;
+    font-weight: bold;
+    border-color: #d3c8b3;
+    box-shadow: 0 0 10px rgba(211, 200, 179, 0.5);
+}
+
+.quest-form button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quest-form button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

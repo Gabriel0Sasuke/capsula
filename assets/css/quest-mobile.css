@@ -1,0 +1,83 @@
+main {
+    padding: 20px 15px;
+    color: #fff4df;
+}
+
+.quest-form {
+    padding: 20px;
+    background-color: #3d372d;
+    border-radius: 2%;
+    box-shadow: #3d372d 0px 0px 10px 0px;
+}
+
+.quest-form h2 {
+    font-size: 2em;
+}
+
+.quest-form p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 1em;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    padding: 10px;
+    font-size: 0.9em;
+    height: 3vh;
+}
+
+.quest-form button {
+    padding: 12px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.radio-group label {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 25px;
+    background-color: #50493f;
+    border: 1px solid #6a6156;
+    color: #ccc;
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.radio-group label:hover {
+    background-color: #6a6156;
+    border-color: #888;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: #c0b49d;
+    color: #2b2722;
+    font-weight: bold;
+    border-color: #d3c8b3;
+    box-shadow: 0 0 10px rgba(211, 200, 179, 0.5);
+}

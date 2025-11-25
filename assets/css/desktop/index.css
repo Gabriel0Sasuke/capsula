@@ -7,7 +7,7 @@
 
 body {
   background-color: #fff4df;
-  background-image: url(../img/content/old-paper-background.jpg);
+  background-image: url(../../img/content/old-paper-background.jpg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

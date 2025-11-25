@@ -25,9 +25,9 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <?php
     if ($celular == false) {
     ?>
-        <link rel="stylesheet" href="../assets/css/admin.css">
+        <link rel="stylesheet" href="../assets/css/desktop/admin.css">
     <?php  } else { ?>
-        <link rel="stylesheet" href="../assets/css/admin-mobile.css">
+        <link rel="stylesheet" href="../assets/css/mobile/admin-mobile.css">
     <?php } ?>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
@@ -43,9 +43,9 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 
     <div id="sidebar" class="sidebar">
         <a href="../index.php"><i class="material-icons-round">home</i>Início</a>
-        <a href="#"><i class="material-icons-round">info</i>Sobre o Projeto</a>
-        <a href="../pages/quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
-        <a href="../pages/admin.php"><i class="material-icons-round">shield</i>Admin</a>
+        <a href="sobre.php"><i class="material-icons-round">info</i>Sobre o Projeto</a>
+        <a href="quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
+        <a href="admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>
 
     <button id="sidebar-toggle">☰</button>

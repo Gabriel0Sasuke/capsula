@@ -28,20 +28,30 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela capsula.post: ~0 rows (aproximadamente)
-DELETE FROM `post`;
+-- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela capsula.questionario
-CREATE TABLE IF NOT EXISTS `questionario` (
-  `quest_id` int NOT NULL,
-  `quest_nome` varchar(255) NOT NULL DEFAULT '',
-  `quest_resposta` varchar(255) NOT NULL DEFAULT '',
-  `quest_data` datetime NOT NULL DEFAULT (now()),
-  KEY `quest_id` (`quest_id`)
+-- Copiando estrutura para tabela capsula.quest
+CREATE TABLE IF NOT EXISTS `quest` (
+  `quest_id` int NOT NULL AUTO_INCREMENT,
+  `user_nome` varchar(255) DEFAULT NULL,
+  `quest_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`quest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela capsula.questionario: ~0 rows (aproximadamente)
-DELETE FROM `questionario`;
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela capsula.respostas
+CREATE TABLE IF NOT EXISTS `respostas` (
+  `respostasId` int NOT NULL AUTO_INCREMENT,
+  `quest_id` int NOT NULL,
+  `pergunta` varchar(100) NOT NULL,
+  `resposta` int NOT NULL,
+  PRIMARY KEY (`respostasId`),
+  KEY `quest_id` (`quest_id`),
+  CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`quest_id`) REFERENCES `quest` (`quest_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Exportação de dados foi desmarcado.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

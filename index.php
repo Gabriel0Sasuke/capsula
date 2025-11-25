@@ -22,7 +22,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capsula - Home</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php
     if ($celular == false) {
     ?>
@@ -35,6 +35,8 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap">
+    <link rel="icon" type="image/svg+xml" href="assets/img/ui/ampulheta.svg">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca sweetalert2 --> 
 </head>
 
 <body>
@@ -118,6 +120,25 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <footer>capsula 2015 - 2025</footer>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/relogio.js"></script>
+    <script>
+    <?php
+    if (isset($_SESSION['msg_id'])) {
+        if ($_SESSION['msg_id'] == 9) {
+            echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'success',
+                            title: 'Sucesso!',
+                            text: 'Logout realizado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+        }
+        unset($_SESSION['msg_id']);
+    }
+    ?>
+    </script>
 </body>
 
 </html>

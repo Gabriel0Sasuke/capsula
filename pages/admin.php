@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once '../scripts/conn.php';
@@ -16,6 +16,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,11 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/ui/ampulheta.svg">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
     <div id="sidebar" class="sidebar">
@@ -42,100 +47,326 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
         <a href="../pages/quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
         <a href="../pages/admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>
-    
+
     <button id="sidebar-toggle">☰</button>
 
     <header>ADMIN CAPSULA</header>
 
-    <?php if(isset($_SESSION['nome_admin'])) { ?>
-    <main>
-        <aside>
-            <div onclick="trocarJanela(1)" id="inicio"><i class="material-icons-round">dashboard</i>Inicio</div>
-            <div onclick="trocarJanela(2)" id="blog"><i class="material-icons-round">article</i>Cadastrar Blog</div>
-            <div onclick="trocarJanela(3)" id="quest"><i class="material-icons-round">question_answer</i>Visualizar Quest</div>
-            <div onclick="window.location.href = '../scripts/admin_logout.php'"><i class="material-icons-round">logout</i>Log-Out</div>
-        </aside>
-        <section>
-            <div id="div_inicio">
-                <h1>Bem-vindo ao Painel de Admin, <?php echo $_SESSION['nome_admin']; ?></h1>
-                <div class="cards"></div>
-            </div>
-
-      <div id="div_blog">
-        <form action="../scripts/proc_post.php" method="POST" enctype="multipart/form-data">
-                    <div class="campo">
-                    <label for="blog_content">Texto</label>
-                    <textarea id="blog_content" name="blog_content" rows="5" required maxlength="1000"></textarea>
+    <?php if (isset($_SESSION['nome_admin'])) { ?>
+        <main>
+            <aside>
+                <div onclick="trocarJanela(1)" id="inicio"><i class="material-icons-round">dashboard</i>Inicio</div>
+                <div onclick="trocarJanela(2)" id="blog"><i class="material-icons-round">article</i>Cadastrar Blog</div>
+                <div onclick="trocarJanela(3)" id="quest"><i class="material-icons-round">question_answer</i>Visualizar Quest</div>
+                <div onclick="showDeslogar()"><i class="material-icons-round">logout</i>Log-Out</div>
+            </aside>
+            <section>
+                <div id="div_inicio">
+                    <h1>Bem-vindo ao Painel de Admin, <?php echo $_SESSION['nome_admin']; ?></h1>
+                    <div class="card-row">
+                        <div class="cards">Acessos Totais <img src="../assets/img/ui/bar_chart.svg" id="grafico-barra"> <strong>13</strong></div>
+                        <div class="cards">Formulários Enviados <img src="../assets/img/ui/edit_document.svg" id="grafico-barra"> <strong>13</strong></div>
                     </div>
-
-
-                    <div class="campo">
-  <label for="blog_image" id="upload" class="blob-btn">
-    <i class="material-icons-round">upload</i>
-    <span class="upload-text">Fazer Upload de Imagem</span>
-
-    <span class="blob-btn__inner" aria-hidden="true">
-      <span class="blob-btn__blobs">
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-      </span>
-    </span>
-  </label>
-
-  <input type="file" id="blog_image" name="blog_image" accept="image/*" hidden>
-  <div id="preview"></div>
-</div>
-
-<!-- filtro gooey -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;width:0;height:0;overflow:hidden">
-  <defs>
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-      <feColorMatrix in="blur" mode="matrix"
-        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
-        result="goo"></feColorMatrix>
-      <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-    </filter>
-  </defs>
-</svg>
-                    <div class="campo">
-                    <label for="blog_data">Data</label>
-                    <input type="datetime-local" id="blog_data" name="blog_data" required value="<?php echo (new DateTime('now', new DateTimeZone('America/Sao_Paulo')))->format('Y-m-d\TH:i'); ?>">
+                    <div class="card-row">
+                        <div class="cards-grande">Navegador mais Utilizado<br>
+                            <div class="grafico"><canvas id="myChartNav"></canvas></div>
+                        </div>
+                        <div class="cards-grande">Dispositivo mais Utilizado<br>
+                            <div class="grafico"><canvas id="myChartDevice"></canvas></div>
+                        </div>
                     </div>
-                    <button type="submit">Cadastrar</button>
-                </form>
-            </div>
-            <div id="div_quest">
-                <h2>Bem-vindo ao Painel de Visualizar Quest</h2>
-                <p>Selecione uma opção no menu lateral para começar.</p>
-            </div>
-        </section>
+                </div>
+
+                <div id="div_blog">
+                    <form action="../scripts/proc_post.php" method="POST" enctype="multipart/form-data">
+                        <div class="campo">
+                            <label for="blog_content">Texto</label>
+                            <textarea id="blog_content" name="blog_content" rows="5" required maxlength="1000"></textarea>
+                        </div>
+
+
+                        <div class="campo">
+                            <label for="blog_image" id="upload" class="blob-btn">
+                                <i class="material-icons-round">upload</i>
+                                <span class="upload-text">Fazer Upload de Imagem</span>
+
+                                <span class="blob-btn__inner" aria-hidden="true">
+                                    <span class="blob-btn__blobs">
+                                        <span class="blob-btn__blob"></span>
+                                        <span class="blob-btn__blob"></span>
+                                        <span class="blob-btn__blob"></span>
+                                        <span class="blob-btn__blob"></span>
+                                    </span>
+                                </span>
+                            </label>
+
+                            <input type="file" id="blog_image" name="blog_image" accept="image/*" hidden>
+                            <div id="preview"></div>
+                        </div>
+
+                        <!-- filtro gooey -->
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;width:0;height:0;overflow:hidden">
+                            <defs>
+                                <filter id="goo">
+                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                    <feColorMatrix in="blur" mode="matrix"
+                                        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
+                                        result="goo"></feColorMatrix>
+                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                </filter>
+                            </defs>
+                        </svg>
+                        <div class="campo">
+                            <label for="blog_data">Data</label>
+                            <input type="datetime-local" id="blog_data" name="blog_data" required value="<?php echo (new DateTime('now', new DateTimeZone('America/Sao_Paulo')))->format('Y-m-d\TH:i'); ?>">
+                        </div>
+                        <button type="submit">Cadastrar</button>
+                    </form>
+                </div>
+                <div id="div_quest">
+                    <h2>Bem-vindo ao Painel de Visualizar Quest</h2>
+                    <p>Selecione uma opção no menu lateral para começar.</p>
+                </div>
+            </section>
         <?php } else { ?>
-          <main class="form-main">
-            <div class="login-container">
-              <form action="../scripts/admin_login.php" method="POST" id="login" class="formulario">
+            <main class="form-main">
+                <div class="login-container">
+                    <form action="../scripts/admin_login.php" method="POST" id="login" class="formulario">
+                        <div class="campo">
+                            <label for="admin_username">Insira seu Nome</label>
+                            <input type="text" id="admin_username" name="nome" required>
+                        </div>
 
-                <div class="campo">
-                  <label for="admin_username">Insira seu Nome</label>
-                  <input type="text" id="admin_username" name="nome" required>
+                        <div class="campo">
+                            <label for="admin_password" id="">Senha</label>
+                            <input type="password" id="admin_password" name="senha" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Entrar</button>
+                    </form>
                 </div>
-
-                <div class="campo">
-                  <label for="admin_password" id="">Senha</label>
-                  <input type="password" id="admin_password" name="senha" required>
-                </div>
-                      <button type="submit" class="submit-btn">Entrar</button>
-              </form>
-            </div>
-          </main>
+            </main>
         <?php } ?>
-    </main>
-    
-    <footer>capsula 2015 - 2025</footer>
+        </main>
 
-    <script src="../assets/js/sidebar.js"></script>
-    <script src="../assets/js/admin.js"></script>
+        <footer>capsula 2015 - 2025</footer>
+
+        <script src="../assets/js/sidebar.js"></script>
+        <script src="../assets/js/admin.js"></script>
+        
+        <script> // Codigo pras notificações
+        function showDeslogar() {
+            Swal.fire({
+                title: 'Deseja Deslogar?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+                confirmButtonColor: '#4CAF50', // Verde
+                cancelButtonColor: '#F44336', // Vermelho
+                background: '#fef7e8',
+                color: '#333333'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../scripts/admin_logout.php';
+                }
+            });
+        }
+        <?php
+        if (isset($_SESSION['msg_id'])) {
+            $msg = $_SESSION['msg_id'];
+            switch ($msg) {
+                case 0:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'success',
+                            title: 'Sucesso!',
+                            text: 'Post cadastrado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 1:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Nenhuma imagem enviada.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 2:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Erro no upload da imagem.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 3:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Tamanho da imagem maior que 10MB.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 4:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Formato de imagem inválido.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 5:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Falha ao criar a pasta de uploads.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                case 6:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Falha ao mover o arquivo para a pasta de uploads.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                    break;
+                default:
+                    echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro Desconhecido!',
+                            text: 'Um erro desconhecido ocorreu.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+            }
+            unset($_SESSION['msg_id']);
+        }
+        ?>
+        </script>
+
+        <script> // Codigo pro Chart
+          const ctxNav = document.getElementById('myChartNav');
+          const ctxDevice = document.getElementById('myChartDevice');
+
+          new Chart(ctxNav, {
+            type: 'pie', // Tipo do gráfico: 'pie' (pizza)
+            
+            data: {
+                // AQUI: Mude os nomes dos navegadores
+                labels: ['Google Chrome', 'Safari', 'Firefox', 'Edge'],
+                
+                datasets: [{
+                    label: 'Acessos', // Texto que aparece ao passar o mouse
+                    
+                    // AQUI: Mude os números (somente para teste)
+                    data: [70, 20, 10, 5], 
+                    
+                    // AQUI: Mude as cores das fatias
+                    backgroundColor: [
+                        '#FFC107', // Amarelo (Chrome)
+                        '#36A2EB', // Azul (Safari)
+                        '#FF6384', // Vermelho/Rosa (Firefox)
+                        '#4BC0C0'  // Verde água (Edge)
+                    ],
+                    borderColor: '#ffffff', // Cor da borda entre as fatias
+                    borderWidth: 2
+                }]
+            },
+            
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Importante para ele obedecer a altura da div pai
+                plugins: {
+                    legend: {
+                        position: 'right', // Joga a legenda para a direita igual na sua foto
+                        labels: {
+                            boxWidth: 15, // Tamanho do quadradinho da cor
+                            color: '#ffffff',
+                            padding: 15,
+                            font: {
+                                size: 14,
+                                family: 'Arial'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        new Chart(ctxDevice, {
+            type: 'pie', // Tipo do gráfico: 'pie' (pizza)
+            
+            data: {
+                // AQUI: Mude os nomes dos navegadores
+                labels: ['Mobile', 'Desktop'],
+                
+                datasets: [{
+                    label: 'Acessos', // Texto que aparece ao passar o mouse
+                    
+                    // AQUI: Mude os números (somente para teste)
+                    data: [70, 20], 
+                    
+                    // AQUI: Mude as cores das fatias
+                    backgroundColor: [
+                        '#36A2EB', // Azul (Mobile)
+                        '#FF6384', // Vermelho/Rosa (Desktop)
+                    ],
+                    borderColor: '#ffffff', // Cor da borda entre as fatias
+                    borderWidth: 2
+                }]
+            },
+            
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Importante para ele obedecer a altura da div pai
+                plugins: {
+                    legend: {
+                        position: 'right', // Joga a legenda para a direita igual na sua foto
+                        labels: {
+                            boxWidth: 15, // Tamanho do quadradinho da cor
+                            color: '#ffffff',
+                            padding: 15,
+                            font: {
+                                size: 14,
+                                family: 'Arial'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        </script>
 </body>
+
 </html>

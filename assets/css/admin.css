@@ -159,7 +159,7 @@ section {
     border-top: 2px solid #A98C78;
   border-bottom: 2px solid #A98C78;
 }
-section div{
+section > div{
     display: none;
 }
 aside div:hover {
@@ -330,15 +330,48 @@ button[type ="submit"]{
     padding: 2rem;
     border-radius: 10px;
 }
+.card-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}
 .cards{
-    width: 100%;
+    width: 49%;
     height: 25vh;
     background-color: #A98C78;
     display: flex;
+    flex-direction: column;
     border-radius: 12px;
-    margin-top: 2vh;
+    font-size: 1.7rem;
+    padding: 0.8rem;
+    flex-wrap: wrap;
 }
-
+.cards-grande{
+    width: 49%;
+    height: 43vh;
+    background-color: #A98C78;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    font-size: 1.7rem;
+    padding: 0.8rem;
+    flex-wrap: wrap;
+}
+h1{
+    margin-bottom: 2vh;
+    font-size: 2.5rem;
+}
+strong{
+    margin-top: 5vh;
+    font-size: 5rem;
+}
+#grafico-barra{
+  width: 8vw;
+  height: auto;
+  filter: brightness(0);
+  transform: scale(1);
+}
 /* formatação do formulário */
 .form-main{
     display: flex;
@@ -374,4 +407,9 @@ button[type ="submit"]{
     margin-bottom: 1rem;
     font-size: clamp(1rem, 1.2vw, 1.5rem);
     color: #fff8ea;
+}
+.grafico{
+    width: 100%;
+    height: 35vh;
+    display: block;
 }

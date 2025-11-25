@@ -28,11 +28,11 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <?php
     if ($celular == false) {
     ?>
-        <link rel="stylesheet" href="../assets/css/index.css">
-        <link rel="stylesheet" href="../assets/css/quest.css">
+        <link rel="stylesheet" href="../assets/css/desktop/index.css">
+        <link rel="stylesheet" href="../assets/css/desktop/quest.css">
     <?php  } else { ?>
-        <link rel="stylesheet" href="../assets/css/index-mobile.css">
-        <link rel="stylesheet" href="../assets/css/quest-mobile.css">
+        <link rel="stylesheet" href="../assets/css/mobile/index-mobile.css">
+        <link rel="stylesheet" href="../assets/css/mobile/quest-mobile.css">
     <?php }?>
 
     <title>Questionário</title>
@@ -41,7 +41,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 
     <div id="sidebar" class="sidebar">
         <a href="../index.php"><i class="material-icons-round">home</i>Início</a>
-        <a href="#"><i class="material-icons-round">info</i>Sobre o Projeto</a>
+        <a href="sobre.php"><i class="material-icons-round">info</i>Sobre o Projeto</a>
         <a href="quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
         <a href="admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>

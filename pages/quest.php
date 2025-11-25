@@ -51,7 +51,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <header>CAPSULA DO TEMPO</header>
     
     <main>
-        <form action="../scripts/submit_quest.php" method="POST" class="quest-form">
+        <form action="../scripts/proc_quest.php" method="POST" class="quest-form">
             <h2>Questionário de Satisfação</h2>
             <p>Agradecemos por participar! Por favor, avalie os seguintes pontos de 0 (péssimo) a 5 (excelente).</p>
 
@@ -63,12 +63,12 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             <div class="form-group">
                 <label>Qual seu nível de satisfação geral com o evento?</label>
                 <div class="radio-group">
-                    <input type="radio" id="satisf-geral-0" name="satisf-geral" value="0" required><label for="satisf-geral-0">0</label>
-                    <input type="radio" id="satisf-geral-1" name="satisf-geral" value="1"><label for="satisf-geral-1">1</label>
-                    <input type="radio" id="satisf-geral-2" name="satisf-geral" value="2"><label for="satisf-geral-2">2</label>
-                    <input type="radio" id="satisf-geral-3" name="satisf-geral" value="3"><label for="satisf-geral-3">3</label>
-                    <input type="radio" id="satisf-geral-4" name="satisf-geral" value="4"><label for="satisf-geral-4">4</label>
-                    <input type="radio" id="satisf-geral-5" name="satisf-geral" value="5"><label for="satisf-geral-5">5</label>
+                    <input type="radio" id="satisf-geral-0" name="satisf_geral" value="0" required><label for="satisf-geral-0">0</label>
+                    <input type="radio" id="satisf-geral-1" name="satisf_geral" value="1"><label for="satisf-geral-1">1</label>
+                    <input type="radio" id="satisf-geral-2" name="satisf_geral" value="2"><label for="satisf-geral-2">2</label>
+                    <input type="radio" id="satisf-geral-3" name="satisf_geral" value="3"><label for="satisf-geral-3">3</label>
+                    <input type="radio" id="satisf-geral-4" name="satisf_geral" value="4"><label for="satisf-geral-4">4</label>
+                    <input type="radio" id="satisf-geral-5" name="satisf_geral" value="5"><label for="satisf-geral-5">5</label>
                 </div>
             </div>
 

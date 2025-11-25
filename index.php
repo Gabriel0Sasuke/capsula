@@ -169,7 +169,9 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <script>
     <?php
     if (isset($_SESSION['msg_id'])) {
-        if ($_SESSION['msg_id'] == 9) {
+        $id = $_SESSION['msg_id'];
+         switch ($id) {
+            case 9:
             echo "Swal.fire({
                             toast: true,
                             position: 'bottom-end', // canto inferior direito
@@ -180,6 +182,43 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
                             timer: 4000,              // 4 segundos
                             timerProgressBar: true    // barrinha embaixo
                             });";
+                            break;
+            case 10:
+            echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Falha ao enviar questionário.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                            break;
+            case 11:
+            echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Falha ao enviar respostas.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                            break;
+            case 12:
+            echo "Swal.fire({
+                            toast: true,
+                            position: 'bottom-end', // canto inferior direito
+                            icon: 'success',
+                            title: 'Sucesso!',
+                            text: 'Questionário enviado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 4000,              // 4 segundos
+                            timerProgressBar: true    // barrinha embaixo
+                            });";
+                            break;
         }
         unset($_SESSION['msg_id']);
     }

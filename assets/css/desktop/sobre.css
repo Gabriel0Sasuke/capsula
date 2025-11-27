@@ -6,25 +6,17 @@
 
 .sobre-container{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background-color: #3d372dea;
     border-radius: 2vw;
     box-shadow: 0 0 10px #00000080;
     padding: 0 1% 0 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; 
-    align-items: center;
-    gap: 7vw;
+    overflow: hidden;
 }
 
 .about, .creditos{
-    height: 90%;
+    height: auto;
     padding: 1.5vw;
-}
-
-.about{
-    width: 70%;
 }
 
 .about h1, .creditos h2{
@@ -35,20 +27,48 @@
 
 .about p{
     color: #e1e1e1;
-    font-size: 1.12rem;
+    font-size: 1.14rem;
     line-height: 2rem;
-    text-align: left;
+    text-align: justify;
     text-indent: 2rem;
     margin-bottom: 1%;
 }
 
+.about p:last-child{
+    margin-bottom: 0;
+} 
+
+.about img{
+    width: 25%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #00000080;
+}
+
+.about img:nth-of-type(odd){
+    float: left;
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.about img:nth-of-type(even){
+    float: right;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .creditos{
     color: #e1e1e1;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+    width:100%;
+    margin-top: 3rem; 
+    padding-top: 2rem;
+    border-top: 1px solid #e1e1e180;
+}
+
+.creditos h2{
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .creditos a{
@@ -61,7 +81,7 @@
     list-style: none;
     font-size: 1.1rem;
     line-height: 2rem;
-    text-align: right;
+    text-align: center;
     text-decoration: none;
     font-style: italic;
 }
@@ -82,8 +102,4 @@
 .creditos ul li strong{
     font-style: normal;
     font-weight: 800;
-}
-
-.creditos h2{
-    margin-bottom: 1rem;
 }

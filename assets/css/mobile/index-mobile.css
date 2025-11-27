@@ -14,7 +14,7 @@ body {
   justify-content: center;
   font-size: clamp(14px, 1vw, 18px);
   overflow-x: hidden;
-  background-image: url(../img/content/old-paper-background.jpg);
+  background-image: url(../../img/content/old-paper-background.jpg);
 }
 
 header {

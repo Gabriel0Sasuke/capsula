@@ -121,6 +121,90 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             </div>
 
             <div class="form-group">
+                <label>O quanto você se sentiu nostálgico(a) ou com 'saudade' durante o evento?</label>
+                <div class="radio-group">
+                    <input type="radio" id="nostalgia-0" name="nostalgia" value="0" required><label for="nostalgia-0">0</label>
+                    <input type="radio" id="nostalgia-1" name="nostalgia" value="1"><label for="nostalgia-1">1</label>
+                    <input type="radio" id="nostalgia-2" name="nostalgia" value="2"><label for="nostalgia-2">2</label>
+                    <input type="radio" id="nostalgia-3" name="nostalgia" value="3"><label for="nostalgia-3">3</label>
+                    <input type="radio" id="nostalgia-4" name="nostalgia" value="4"><label for="nostalgia-4">4</label>
+                    <input type="radio" id="nostalgia-5" name="nostalgia" value="5"><label for="nostalgia-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto a cápsula fez você lembrar de fatos ou sentimentos que já tinha esquecido?</label>
+                <div class="radio-group">
+                    <input type="radio" id="lembrar-0" name="lembrar" value="0" required><label for="lembrar-0">0</label>
+                    <input type="radio" id="lembrar-1" name="lembrar" value="1"><label for="lembrar-1">1</label>
+                    <input type="radio" id="lembrar-2" name="lembrar" value="2"><label for="lembrar-2">2</label>
+                    <input type="radio" id="lembrar-3" name="lembrar" value="3"><label for="lembrar-3">3</label>
+                    <input type="radio" id="lembrar-4" name="lembrar" value="4"><label for="lembrar-4">4</label>
+                    <input type="radio" id="lembrar-5" name="lembrar" value="5"><label for="lembrar-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto você se sentiu conectado(a) com a pessoa que você era há 10 anos?</label>
+                <div class="radio-group">
+                    <input type="radio" id="conectado-0" name="conectado" value="0" required><label for="conectado-0">0</label>
+                    <input type="radio" id="conectado-1" name="conectado" value="1"><label for="conectado-1">1</label>
+                    <input type="radio" id="conectado-2" name="conectado" value="2"><label for="conectado-2">2</label>
+                    <input type="radio" id="conectado-3" name="conectado" value="3"><label for="conectado-3">3</label>
+                    <input type="radio" id="conectado-4" name="conectado" value="4"><label for="conectado-4">4</label>
+                    <input type="radio" id="conectado-5" name="conectado" value="5"><label for="conectado-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto este evento fez você refletir sobre o quanto você mudou e amadureceu desde 2015?</label>
+                <div class="radio-group">
+                    <input type="radio" id="refletir-0" name="refletir" value="0" required><label for="refletir-0">0</label>
+                    <input type="radio" id="refletir-1" name="refletir" value="1"><label for="refletir-1">1</label>
+                    <input type="radio" id="refletir-2" name="refletir" value="2"><label for="refletir-2">2</label>
+                    <input type="radio" id="refletir-3" name="refletir" value="3"><label for="refletir-3">3</label>
+                    <input type="radio" id="refletir-4" name="refletir" value="4"><label for="refletir-4">4</label>
+                    <input type="radio" id="refletir-5" name="refletir" value="5"><label for="refletir-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Qual foi a intensidade da emoção que você sentiu no momento da abertura da cápsula?</label>
+                <div class="radio-group">
+                    <input type="radio" id="emocao-0" name="emocao" value="0" required><label for="emocao-0">0</label>
+                    <input type="radio" id="emocao-1" name="emocao" value="1"><label for="emocao-1">1</label>
+                    <input type="radio" id="emocao-2" name="emocao" value="2"><label for="emocao-2">2</label>
+                    <input type="radio" id="emocao-3" name="emocao" value="3"><label for="emocao-3">3</label>
+                    <input type="radio" id="emocao-4" name="emocao" value="4"><label for="emocao-4">4</label>
+                    <input type="radio" id="emocao-5" name="emocao" value="5"><label for="emocao-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto você sentiu que a emoção das outras pessoas contagiou o ambiente?</label>
+                <div class="radio-group">
+                    <input type="radio" id="contagio-0" name="contagio" value="0" required><label for="contagio-0">0</label>
+                    <input type="radio" id="contagio-1" name="contagio" value="1"><label for="contagio-1">1</label>
+                    <input type="radio" id="contagio-2" name="contagio" value="2"><label for="contagio-2">2</label>
+                    <input type="radio" id="contagio-3" name="contagio" value="3"><label for="contagio-3">3</label>
+                    <input type="radio" id="contagio-4" name="contagio" value="4"><label for="contagio-4">4</label>
+                    <input type="radio" id="contagio-5" name="contagio" value="5"><label for="contagio-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto este evento trouxe uma sensação de 'fechamento de ciclo' ou de paz com o passado?</label>
+                <div class="radio-group">
+                    <input type="radio" id="fechamento-0" name="fechamento" value="0" required><label for="fechamento-0">0</label>
+                    <input type="radio" id="fechamento-1" name="fechamento" value="1"><label for="fechamento-1">1</label>
+                    <input type="radio" id="fechamento-2" name="fechamento" value="2"><label for="fechamento-2">2</label>
+                    <input type="radio" id="fechamento-3" name="fechamento" value="3"><label for="fechamento-3">3</label>
+                    <input type="radio" id="fechamento-4" name="fechamento" value="4"><label for="fechamento-4">4</label>
+                    <input type="radio" id="fechamento-5" name="fechamento" value="5"><label for="fechamento-5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <button type="submit">Enviar Avaliação</button>
             </div>
         </form>

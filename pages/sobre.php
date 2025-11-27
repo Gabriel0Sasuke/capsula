@@ -35,7 +35,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
         <link rel="stylesheet" href="../assets/css/mobile/sobre-mobile.css">
     <?php }?>
 
-    <title>Questionário</title>
+    <title>Sobre o projeto</title>
 </head>
 
 <body>
@@ -53,19 +53,30 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
 
     <main class="sobre-main">
         <div class="sobre-container">
+
             <div class="about">
                 <h1>Sobre o Projeto</h1>
-                <p>
-                    O projeto da cápsula do tempo desenvolvido na ETEC Jardim Ângela em 2015 foi idealizado para preservar memórias e experiências significativas de um grupo de estudantes. A iniciativa consiste em reunir mensagens, objetos e registros que refletem os principais sentimentos, expectativas e vivências daquele período escolar. O caráter sentimental presente nas contribuições demonstra a importância do afeto, das relações interpessoais e das experiências compartilhadas para a formação da identidade individual e coletiva.
-                </p>
 
-                <p>
-                    A cápsula do tempo também desempenha um papel simbólico ao permitir que, em um futuro determinado, participantes revisitem as lembranças e compreendam as transformações ocorridas ao longo dos anos. Certos aspectos, tais como perdas e ausências, estão presentes de modo sutil entre os registros, conferindo profundidade à reflexão e reforçando o valor da memória. Assim, o projeto se estabelece como um convite à valorização do passado, à empatia e ao reconhecimento da importância da trajetória vivida na escola.
-                </p>
+                <p>O tempo é uma força inexorável que, em seu fluxo contínuo, tende a diluir memórias e transformar realidades. Contra essa efemeridade, o projeto da cápsula do tempo, idealizado e concretizado na ETEC Jardim Ângela em 2015, ergue-se como um ato de resistência e afeto. A iniciativa não se limitou a ser um mero arquivamento de objetos físicos; ela constituiu um esforço coletivo para cristalizar a essência de uma geração, capturando o espírito, as angústias e as esperanças de um grupo de estudantes em um momento singular de suas trajetórias. Ao reunir cartas, fotografias, artefatos e registros escritos, o projeto transcendeu a materialidade para se tornar um guardião da identidade daquele período escolar.</p>
 
-                <p>
-                    Esta cápsula do tempo não guarda apenas objetos, mas a essência de quem passou pela ETEC Jardim Ângela em 2015. Ao ser reaberta, espera-se que cada lembrança resgatada sirva como um abraço no passado e uma inspiração para o futuro, mantendo viva a memória daqueles dias e daqueles que fizeram parte dessa história.
-                </p>
+                <img src="../assets/img/content/imagens-2015/sala-2015.jpg" alt="" id="foto-sobre">
+
+                <p>O ambiente da ETEC, em 2015, serviu como o cenário de vivências intensas e formadoras. A cápsula, nesse contexto, funcionou como um espelho do cotidiano estudantil, refletindo a importância das relações interpessoais e do convívio diário na construção da subjetividade. O caráter sentimental impregnado em cada contribuição demonstra que a escola era mais do que um espaço de aprendizado técnico; era um território de encontros, de construção de laços e de descobertas pessoais. As mensagens ali depositadas carregam a autenticidade de quem vivia o presente com intensidade, sem a consciência plena das transformações que a década seguinte traria.</p>
+
+                <img src="" alt="" id="foto-sobre"> <!-- achei melhor colocar as imagens do projeto pronto, depois do postifólio -->
+
+                <p>À medida que os anos avançam, a função simbólica da cápsula se amplifica. Ela deixa de ser apenas um registro do passado para se tornar uma ponte de diálogo entre tempos distintos. Para os participantes, a reabertura desse arquivo representa um confronto inevitável com o próprio amadurecimento. O reencontro com as expectativas de outrora permite mensurar o quanto se caminhou, quais sonhos foram realizados e quais rotas foram recalculadas. É um exercício pedagógico e existencial que valida a história individual dentro da narrativa coletiva, reforçando o sentimento de pertencimento àquela comunidade escolar.</p>
+
+                <img src="" alt="" id="foto-sobre">
+
+                <p>Entretanto, é na sutileza dos silêncios que o projeto revela sua camada mais profunda. Entre as memórias preservadas, há também o registro implícito das ausências. A cápsula do tempo, ao congelar um instante de 2015, torna evidente o contraste com o presente, marcando o espaço daquilo — e daqueles — que não atravessaram a década da mesma forma. O luto e a saudade, embora não ditos explicitamente, permeiam a experiência de revisitar o passado, conferindo ao projeto uma dignidade solene. Essas lacunas não diminuem o valor da memória; pelo contrário, elas ensinam que recordar é também uma forma de honrar a permanência do afeto, mesmo diante da transitoriedade da vida.</p>
+                
+                <img src="" alt="" id="foto-sobre">
+
+                <p>Em suma, a cápsula do tempo da ETEC Jardim Ângela não é um monumento estático, mas um organismo vivo de memória. Ela guarda a ingenuidade, a força e a verdade de 2015, oferecendo-as como um presente ao futuro. Ao ser reaberta, espera-se que seu conteúdo atue como um abraço acolhedor vindo do passado, lembrando a cada ex-aluno que, independentemente dos caminhos trilhados ou das perdas enfrentadas, a história vivida naquele lugar permanece intacta, valorosa e fundamental para a compreensão de quem eles se tornaram hoje.</p>
+
+                <img src="" alt="" id="foto-sobre">
+
             </div>
 
             <div class="creditos">
@@ -73,9 +84,8 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
                 <ul>
                     <li><strong>Orientador(a):</strong> Prof. Valéria Silva</li>
                     <li><strong>Instituição:</strong> ETEC Jardim Ângela</li>
-                    <li><strong>Projeto realizado por:</strong> 2DSA - 2025 & 2XXX - 2015</li>
+                    <li><strong>Projeto realizado por:</strong> 2º Ano 2015</li>
                     <li><strong>Desenvolvedores: <br> </strong> Gabriel P. <br> Wilson R. <br> Carlos V.</li>
-                    <li><strong>Redes de Divulgação: <br> </strong> <a href="#" target="_blank">@capsula_etec (Instagram)</a> <br> <a href="#" target="_blank">capsula_etec (Facebook)</a></li>
                 </ul>
             </div>
         </div>

@@ -1,10 +1,12 @@
    const inicio = document.getElementById('inicio');
    const blog = document.getElementById('blog');
    const quest = document.getElementById('quest');
+   const galeria = document.getElementById('galeria');
 
    const divInicio = document.getElementById('div_inicio');
    const divBlog = document.getElementById('div_blog');
    const divQuest = document.getElementById('div_quest');
+   const divGaleria = document.getElementById('div_galeria');
 
 document.addEventListener('DOMContentLoaded', function() {
     // Inicialmente, exibir apenas a div de início
@@ -15,38 +17,36 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function trocarJanela(janela) {
+    // Remove todas as classes selected e divLigada
+    inicio.classList.remove('selected');
+    blog.classList.remove('selected');
+    quest.classList.remove('selected');
+    galeria.classList.remove('selected');
+
+    divInicio.classList.remove('divLigada');
+    divBlog.classList.remove('divLigada');
+    divQuest.classList.remove('divLigada');
+    divGaleria.classList.remove('divLigada');
+
     switch (janela) {
         case 1:
             inicio.classList.add('selected');
-            blog.classList.remove('selected');
-            quest.classList.remove('selected');
-
             divInicio.classList.add('divLigada');
-            divBlog.classList.remove('divLigada');
-            divQuest.classList.remove('divLigada');
-            ajustarAltura();
             break;
         case 2:
             blog.classList.add('selected');
-            inicio.classList.remove('selected');
-            quest.classList.remove('selected');
-
             divBlog.classList.add('divLigada');
-            divInicio.classList.remove('divLigada');
-            divQuest.classList.remove('divLigada');
-            ajustarAltura();
             break;
         case 3:
             quest.classList.add('selected');
-            inicio.classList.remove('selected');
-            blog.classList.remove('selected');
-
             divQuest.classList.add('divLigada');
-            divInicio.classList.remove('divLigada');
-            divBlog.classList.remove('divLigada');
-            ajustarAltura();
+            break;
+        case 4:
+            galeria.classList.add('selected');
+            divGaleria.classList.add('divLigada');
             break;
     }
+    ajustarAltura();
 }
 const section = document.querySelector('section');
 const aside = document.querySelector('aside');

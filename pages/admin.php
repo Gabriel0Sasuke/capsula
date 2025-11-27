@@ -3,8 +3,7 @@ session_start();
 
 require_once '../scripts/conn.php';
 
-$sql = 'SELECT * FROM post ORDER BY data_publicacao DESC';
-$result = $conn->query($sql);
+// Detecção de dispositivo móvel
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 $celular = false;
 if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', $user_agent)) {
@@ -18,7 +17,12 @@ $visitas = $conn->query("SELECT COUNT(*) FROM visitas");
 $formularios = $conn->query("SELECT COUNT(*) FROM quest");
 $nav_data = $conn->query("SELECT user_navegador, COUNT(*) as total FROM visitas GROUP BY user_navegador");
 $device_data = $conn->query("SELECT user_sistema_operacional, COUNT(*) as total FROM visitas GROUP BY user_sistema_operacional");
+
+// Dados pra tabela de editar os posts
+$resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -65,6 +69,7 @@ $device_data = $conn->query("SELECT user_sistema_operacional, COUNT(*) as total 
                 <div onclick="trocarJanela(1)" id="inicio"><i class="material-icons-round">dashboard</i>Inicio</div>
                 <div onclick="trocarJanela(2)" id="blog"><i class="material-icons-round">article</i>Cadastrar Blog</div>
                 <div onclick="trocarJanela(3)" id="quest"><i class="material-icons-round">question_answer</i>Visualizar Quest</div>
+                <div onclick="trocarJanela(4)" id="galeria"><i class="material-icons-round">photo_library</i>Posts Cadastrados</div>
                 <div onclick="showDeslogar()"><i class="material-icons-round">logout</i>Log-Out</div>
             </aside>
             <section>
@@ -131,8 +136,37 @@ $device_data = $conn->query("SELECT user_sistema_operacional, COUNT(*) as total 
                     </form>
                 </div>
                 <div id="div_quest">
-                    <h2>Bem-vindo ao Painel de Visualizar Quest</h2>
+                    <h2>Visualizar Questionários</h2>
                     <p>Selecione uma opção no menu lateral para começar.</p>
+                </div>
+                <div id="div_galeria">
+                    <h2>Posts Cadastrados</h2>
+                    <div class="posts-container">
+                        <?php
+                        if ($resultpost->num_rows > 0) {
+                            while ($post = $resultpost->fetch_assoc()) {
+                                $postId = $post['id'];
+                                $postImagem = $post['imagem'] ?? '';
+                                $postConteudo = $post['conteudo'] ?? '';
+                                $postData = $post['data_publicacao'] ?? '';
+                                
+                                echo '<div class="post-card">';
+                                echo '<img src="../' . htmlspecialchars($postImagem) . '" alt="Imagem do post">';
+                                echo '<div class="post-info">';
+                                echo '<p class="post-text">' . htmlspecialchars($postConteudo) . '</p>';
+                                echo '<span class="post-date">' . ($postData ? date('d/m/Y H:i', strtotime($postData)) : '') . '</span>';
+                                echo '<div class="post-actions">';
+                                echo '<button class="btn-editar" onclick="editarPost(' . $postId . ')"><i class="material-icons-round">edit</i>Editar</button>';
+                                echo '<button class="btn-excluir" onclick="excluirPost(' . $postId . ')"><i class="material-icons-round">delete</i>Excluir</button>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+                        } else {
+                            echo '<p>Nenhum post cadastrado ainda.</p>';
+                        }
+                        ?>
+                    </div>
                 </div>
             </section>
         <?php } else { ?>

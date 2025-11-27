@@ -1,0 +1,52 @@
+.gallery-main {
+    padding: 10px;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gallery-header h1 {
+    font-family: 'Quintessential', cursive;
+    font-size: 2rem;
+    color: #333;
+}
+
+.gallery-header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin-top: 15px;
+}
+
+.post-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.post-item img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.post-caption p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.no-images {
+    text-align: center;
+    font-size: 1rem;
+    color: #777;
+}

@@ -91,6 +91,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
         <a href="index.php"><i class="material-icons-round">home</i>Início</a>
         <a href="pages/sobre.php"><i class="material-icons-round">info</i>Sobre o Projeto</a>
         <a href="pages/quest.php"><i class="material-icons-round">rate_review</i>Questionário</a>
+        <a href="pages/galeria.php"><i class="material-icons-round">photo_library</i>Galeria</a>
         <a href="pages/admin.php"><i class="material-icons-round">shield</i>Admin</a>
     </div>
 

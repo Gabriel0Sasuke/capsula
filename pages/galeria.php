@@ -56,55 +56,57 @@ if (preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i'
             <hr class="divider">
         </div>
 
-        <!-- <div class="posts-container">
-            <?php
-            if ($result->num_rows > 0) {
-                $counter = 0;
-                while($row = $result->fetch_assoc()) {
-                    $align_class = ($counter % 2 == 0) ? 'align-left' : 'align-right';
-                    echo '<div class="post-item ' . $align_class . '">';
-                    echo '  <img src="../' . htmlspecialchars($row["imagem"]) . '" alt="Imagem da galeria">';
-                    echo '  <div class="post-caption">';
-                    echo '      <p>' . nl2br(htmlspecialchars($row["texto"])) . '</p>';
-                    echo '  </div>';
-                    echo '</div>';
-                    $counter++;
+        <div class="posts-wrapper">
+            <!-- <div class="posts-container">
+                <?php
+                if ($result->num_rows > 0) {
+                    $counter = 0;
+                    while($row = $result->fetch_assoc()) {
+                        $align_class = ($counter % 2 == 0) ? 'align-left' : 'align-right';
+                        echo '<div class="post-item ' . $align_class . '">';
+                        echo '  <img src="../' . htmlspecialchars($row["imagem"]) . '" alt="Imagem da galeria">';
+                        echo '  <div class="post-caption">';
+                        echo '      <p>' . nl2br(htmlspecialchars($row["texto"])) . '</p>';
+                        echo '  </div>';
+                        echo '</div>';
+                        $counter++;
+                    }
+                } else {
+                    echo "<p class='no-images'>Nenhuma imagem encontrada na galeria.</p>";
                 }
-            } else {
-                echo "<p class='no-images'>Nenhuma imagem encontrada na galeria.</p>";
-            }
-            $conn->close();
-            ?>
-        </div> -->
+                $conn->close();
+                ?>
+            </div> -->
 
-        <div class="posts-container">
-            <!-- Imagens de Teste -->
-            <div class="post-item align-left">
-              <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 1">
-              <div class="post-caption">
-                  <p>Esta é uma legenda de teste para a primeira imagem. O texto aqui serve para demonstrar como a legenda se ajusta ao contêiner, permitindo uma breve descrição ou reflexão sobre o momento capturado.</p>
-              </div>
-            </div>
+            <div class="posts-container">
+                <!-- Imagens de Teste -->
+                <div class="post-item align-left">
+                  <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 1">
+                  <div class="post-caption">
+                      <p>Esta é uma legenda de teste para a primeira imagem. O texto aqui serve para demonstrar como a legenda se ajusta ao contêiner, permitindo uma breve descrição ou reflexão sobre o momento capturado.</p>
+                  </div>
+                </div>
 
-            <div class="post-item align-right">
-              <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 2">
-              <div class="post-caption">
-                  <p>Esta é a legenda para a segunda imagem de teste. A formatação alterna entre esquerda e direita para criar um layout mais dinâmico e interessante para o visitante.</p>
-              </div>
-            </div>
+                <div class="post-item align-right">
+                  <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 2">
+                  <div class="post-caption">
+                      <p>Esta é a legenda para a segunda imagem de teste. A formatação alterna entre esquerda e direita para criar um layout mais dinâmico e interessante para o visitante.</p>
+                  </div>
+                </div>
 
-            <div class="post-item align-left">
-              <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 1">
-              <div class="post-caption">
-                  <p>Esta é uma legenda de teste para a primeira imagem. O texto aqui serve para demonstrar como a legenda se ajusta ao contêiner, permitindo uma breve descrição ou reflexão sobre o momento capturado.</p>
-              </div>
-            </div>
+                <div class="post-item align-left">
+                  <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 1">
+                  <div class="post-caption">
+                      <p>Esta é uma legenda de teste para a primeira imagem. O texto aqui serve para demonstrar como a legenda se ajusta ao contêiner, permitindo uma breve descrição ou reflexão sobre o momento capturado.</p>
+                  </div>
+                </div>
 
-            <div class="post-item align-right">
-              <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 2">
-              <div class="post-caption">
-                  <p>Esta é a legenda para a segunda imagem de teste. A formatação alterna entre esquerda e direita para criar um layout mais dinâmico e interessante para o visitante.</p>
-              </div>
+                <div class="post-item align-right">
+                  <img src="../assets/img/ui/placeholder.png" alt="Imagem de teste 2">
+                  <div class="post-caption">
+                      <p>Esta é a legenda para a segunda imagem de teste. A formatação alterna entre esquerda e direita para criar um layout mais dinâmico e interessante para o visitante.</p>
+                  </div>
+                </div>
             </div>
         </div>
     </main>

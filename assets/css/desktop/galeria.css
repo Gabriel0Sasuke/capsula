@@ -1,17 +1,22 @@
 .gallery-main {
+    display: block; 
+    flex-direction: initial; 
+    align-items: initial; 
+    justify-content: initial;
     max-width: 100%;
     margin: 20px auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .gallery-header {
-    width: 60%;
+    width: 35%;
     padding-right: 30px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 0;
+    float: left;
 }
 
 .gallery-header h1 {
@@ -24,6 +29,11 @@
 .gallery-header p {
     font-size: 1.1rem;
     color: #666;
+}
+
+.posts-wrapper {
+    width: 65%;
+    float: left;
 }
 
 .divider {

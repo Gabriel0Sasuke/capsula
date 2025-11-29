@@ -229,7 +229,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     
         images.forEach(img => {
         img.addEventListener('error', function() {
-            this.src = 'assets/img/ui/placeholder.png';
+            this.src = 'assets/img/content/placeholder.jpeg';
             this.alt = 'Imagem não encontrada';
             });
         });

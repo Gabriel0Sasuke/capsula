@@ -24,6 +24,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/ui/ampulheta.svg">
 
     <?php
     if ($celular == false) {

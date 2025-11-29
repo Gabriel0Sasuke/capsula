@@ -8,7 +8,15 @@ function atualizarRelogio() {
     let agora = new Date();
     let diferenca = eventoData - agora;
 
-    let diasRestantes = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+    // Se o evento já começou
+    if (diferenca <= 0) {
+        diasEvento.textContent = '0';
+        clock.innerHTML = '🎉 <span style="font-size: 0.6em;">O evento começou!</span> 🎉';
+        return;
+    }
+
+    // Calcula dias restantes (usando floor para não arredondar para cima)
+    let diasRestantes = Math.floor(diferenca / (1000 * 60 * 60 * 24));
     diasEvento.textContent = diasRestantes;
 
     // Contagem Regressiva do Relógio

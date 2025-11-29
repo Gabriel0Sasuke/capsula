@@ -781,6 +781,18 @@ function enviarEdicao(formData) {
     });
 }
         </script>
+        <script>
+        // Fallback para imagens não encontradas
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = '../assets/img/content/placeholder.jpeg';
+                    this.alt = 'Imagem não encontrada';
+                });
+            });
+        });
+        </script>
 </body>
 
 </html>

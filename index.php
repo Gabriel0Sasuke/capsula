@@ -46,8 +46,8 @@ if(isset($_SESSION['visited'])) {
     $_SESSION['visited'] = true; // Marca que o usuário já foi contado
 }
 
-//Pegar Dados da tabela post
-$sql = 'SELECT * FROM post ORDER BY data_publicacao DESC';
+//Pegar Dados da tabela post (apenas posts gerais)
+$sql = "SELECT * FROM post WHERE tipo_post = 'post_geral' ORDER BY data_publicacao DESC";
 $result = $conn->query($sql);
 
 //Implementação de detecção de dispostivos pra responsividade
@@ -124,7 +124,7 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
                     $dataFmt = $dataRaw ? date('d/m/Y', strtotime($dataRaw)) : '';
                     ?>
                     <article class="noticias">
-                        <img src="<?php echo htmlspecialchars($imgSrc); ?>" alt="" class="news-img">
+                        <img src="<?php echo htmlspecialchars($imgSrc); ?>" class="news-img">
                         <p><?php echo nl2br(htmlspecialchars($texto)); ?></p>
                         <?php if ($dataFmt): ?>
                             <div class="news-data" id="news-data"><?php echo htmlspecialchars($dataFmt); ?></div>
@@ -224,6 +224,16 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
         unset($_SESSION['msg_id']);
     }
     ?>
+    document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    
+    images.forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = '../assets/img/content/placeholder.jpeg';
+            this.alt = 'Imagem não encontrada';
+        });
+    });
+});
     </script>
 </body>
 

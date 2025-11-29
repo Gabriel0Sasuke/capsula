@@ -1,52 +1,166 @@
+/* ===== Main da Galeria ===== */
 .gallery-main {
-    padding: 10px;
+    padding: 15px 10px;
+    min-height: calc(100vh - 15vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* ===== Header da Galeria ===== */
 .gallery-header {
     text-align: center;
     margin-bottom: 20px;
+    padding: 0 10px;
 }
 
 .gallery-header h1 {
     font-family: 'Quintessential', cursive;
-    font-size: 2rem;
-    color: #333;
+    font-size: 1.6rem;
+    color: #3d372d;
+    margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .gallery-header p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 0.95rem;
+    color: #5c5345;
+    line-height: 1.4;
 }
 
 .divider {
     border: 0;
-    height: 1px;
-    background: #ccc;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #A98C78, transparent);
     margin-top: 15px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* ===== Container dos Posts ===== */
+.posts-wrapper {
+    width: 100%;
+    max-width: 500px;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* ===== Cards de Post ===== */
 .post-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    padding: 10px;
+    background-color: #3d372d;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.post-item:active {
+    transform: scale(0.98);
 }
 
 .post-item img {
     width: 100%;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-caption {
+    padding: 15px;
+    background-color: #3d372d;
 }
 
 .post-caption p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #fff4df;
+    word-break: break-word;
 }
 
+/* ===== Alinhamento alternado (decorativo em mobile) ===== */
+.align-left,
+.align-right {
+    /* Em mobile, ambos ficam centralizados */
+    width: 100%;
+}
+
+/* ===== Mensagem sem imagens ===== */
 .no-images {
     text-align: center;
     font-size: 1rem;
-    color: #777;
+    color: #5c5345;
+    padding: 40px 20px;
+    background-color: #3d372d;
+    border-radius: 12px;
+    color: #fff4df;
+}
+
+.no-images::before {
+    content: '📷';
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.6;
+}
+
+/* ===== Scrollbar personalizada ===== */
+.posts-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.posts-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.posts-wrapper::-webkit-scrollbar-thumb {
+    background: #A98C78;
+    border-radius: 4px;
+}
+
+/* ===== Ajustes para telas muito pequenas ===== */
+@media screen and (max-width: 360px) {
+    .gallery-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-header p {
+        font-size: 0.85rem;
+    }
+    
+    .post-item img {
+        height: 180px;
+    }
+    
+    .post-caption {
+        padding: 12px;
+    }
+    
+    .post-caption p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== Ajustes para telas maiores (tablets) ===== */
+@media screen and (min-width: 600px) {
+    .gallery-main {
+        padding: 20px 15px;
+    }
+    
+    .posts-wrapper {
+        max-width: 550px;
+    }
+    
+    .post-item img {
+        height: 280px;
+    }
+    
+    .gallery-header h1 {
+        font-size: 1.8rem;
+    }
 }

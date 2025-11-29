@@ -117,3 +117,45 @@ main {
 .quest-form button:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+/* Seções do questionário */
+.section-title {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.5em;
+    color: #d3c8b3;
+    text-align: center;
+    margin: 35px 0 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.section-title:first-of-type {
+    margin-top: 10px;
+}
+
+/* Dicas de preenchimento */
+.hint {
+    font-size: 0.85em !important;
+    color: #a09080 !important;
+    font-style: italic;
+    margin: 5px 0 10px 0 !important;
+    text-align: left !important;
+}
+
+/* Textarea melhorado */
+.form-group textarea {
+    min-height: 80px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.form-group textarea::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.form-group input[type="text"]::placeholder {
+    color: #888;
+    font-style: italic;
+}

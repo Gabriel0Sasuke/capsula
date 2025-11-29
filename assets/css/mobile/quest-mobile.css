@@ -1,66 +1,106 @@
 main {
-    padding: 20px 15px;
+    padding: 15px 10px;
     color: #fff4df;
 }
 
 .quest-form {
-    padding: 20px;
+    padding: 15px;
     background-color: #3d372d;
-    border-radius: 2%;
+    border-radius: 8px;
     box-shadow: #3d372d 0px 0px 10px 0px;
 }
 
 .quest-form h2 {
-    font-size: 2em;
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .quest-form p {
-    font-size: 1em;
-    margin-bottom: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 1.4;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .form-group label {
-    font-size: 1em;
+    font-size: 0.95em;
+    display: block;
+    margin-bottom: 5px;
+    line-height: 1.3;
 }
 
-.form-group input[type="text"],
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    height: auto;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff4df;
+    color: #3d372d;
+    box-sizing: border-box;
+}
+
 .form-group textarea {
-    padding: 10px;
-    font-size: 0.9em;
-    height: 3vh;
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    height: auto;
+    min-height: 80px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff4df;
+    color: #3d372d;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.4;
+    resize: vertical;
 }
 
 .quest-form button {
-    padding: 12px;
+    width: 100%;
+    padding: 14px;
     font-size: 1.1em;
     border: none;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: #A98C78;
     color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.quest-form button:active {
+    background-color: #8a7362;
 }
 
 .radio-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 8px;
+    margin-top: 8px;
     justify-content: center;
 }
 
 .radio-group label {
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    padding: 10px 14px;
+    border-radius: 20px;
     background-color: #50493f;
     border: 1px solid #6a6156;
     color: #ccc;
     cursor: pointer;
     font-weight: normal;
+    font-size: 0.95em;
     transition: all 0.3s ease;
     user-select: none;
 }
@@ -80,4 +120,39 @@ main {
     font-weight: bold;
     border-color: #d3c8b3;
     box-shadow: 0 0 10px rgba(211, 200, 179, 0.5);
+}
+
+/* Seções do questionário */
+.section-title {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.1em;
+    color: #d3c8b3;
+    text-align: center;
+    margin: 20px 0 12px 0;
+    padding: 10px 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    line-height: 1.3;
+}
+
+.section-title:first-of-type {
+    margin-top: 5px;
+}
+
+/* Dicas de preenchimento */
+.hint {
+    font-size: 0.75em !important;
+    color: #a09080 !important;
+    font-style: italic;
+    margin: 5px 0 10px 0 !important;
+    text-align: center !important;
+    line-height: 1.3;
+}
+
+/* Placeholder styling */
+.form-group textarea::placeholder,
+.form-group input[type="text"]::placeholder {
+    color: #888;
+    font-style: italic;
+    font-size: 0.85em;
 }

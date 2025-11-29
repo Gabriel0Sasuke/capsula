@@ -5,6 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conteudo = $_POST['blog_content'];
     $data_publicacao = $_POST['blog_data'];
     $imagem = $_FILES['blog_image'];
+    $tipo_post = $_POST['tipo_post'] ?? 'post_geral';
+    $autor = $_SESSION['nome_admin'] ?? 'Admin';
 
     // Upload seguro da imagem
     $maxFileSize = 10 * 1024 * 1024; // 10MB
@@ -75,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insere no banco (colunas conforme schema atual)
-    $sql = 'INSERT INTO post (conteudo, data_publicacao, imagem) VALUES (?, ?, ?)';
+    $sql = 'INSERT INTO post (conteudo, data_publicacao, imagem, autor, tipo_post) VALUES (?, ?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         $_SESSION['msg_id'] = 7; // 7 = erro ao preparar query
@@ -83,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt->bind_param('sss', $conteudo, $dataFormatada, $caminhoRelativo);
+    $stmt->bind_param('sssss', $conteudo, $dataFormatada, $caminhoRelativo, $autor, $tipo_post);
     if (!$stmt->execute()) {
         $_SESSION['msg_id'] = 8; // 8 = erro ao executar insert
         $stmt->close();

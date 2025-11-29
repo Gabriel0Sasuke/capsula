@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `post` (
   `conteudo` text NOT NULL,
   `data_publicacao` datetime NOT NULL,
   `imagem` varchar(255) NOT NULL,
+  `autor` varchar(100) NOT NULL,
+  `tipo_post` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -56,7 +58,8 @@ CREATE TABLE IF NOT EXISTS `respostas` (
   `respostasId` int NOT NULL AUTO_INCREMENT,
   `quest_id` int NOT NULL,
   `pergunta` varchar(100) NOT NULL,
-  `resposta` int NOT NULL,
+  `resposta_nota` int DEFAULT NULL,
+  `resposta_texto` text DEFAULT NULL,
   PRIMARY KEY (`respostasId`),
   KEY `quest_id` (`quest_id`),
   CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`quest_id`) REFERENCES `quest` (`quest_id`)

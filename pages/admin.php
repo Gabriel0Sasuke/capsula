@@ -20,6 +20,14 @@ $device_data = $conn->query("SELECT user_sistema_operacional, COUNT(*) as total 
 
 // Dados pra tabela de editar os posts
 $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
+
+// Dados dos questionários
+$resultquest = $conn->query("SELECT q.quest_id, q.user_nome, q.quest_data, 
+    GROUP_CONCAT(CONCAT(r.pergunta, ':::', COALESCE(r.resposta_nota, ''), ':::', COALESCE(r.resposta_texto, '')) SEPARATOR '|||') as respostas
+    FROM quest q 
+    LEFT JOIN respostas r ON q.quest_id = r.quest_id 
+    GROUP BY q.quest_id 
+    ORDER BY q.quest_data DESC");
 ?>
 
 
@@ -92,6 +100,14 @@ $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
                 <div id="div_blog">
                     <form action="../scripts/proc_post.php" method="POST" enctype="multipart/form-data">
                         <div class="campo">
+                            <label for="tipo_post">Tipo de Post</label>
+                            <select id="tipo_post" name="tipo_post" required>
+                                <option value="post_geral">Post Geral</option>
+                                <option value="galeria">Galeria</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
                             <label for="blog_content">Texto</label>
                             <textarea id="blog_content" name="blog_content" rows="5" required maxlength="1000"></textarea>
                         </div>
@@ -136,8 +152,109 @@ $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
                     </form>
                 </div>
                 <div id="div_quest">
-                    <h2>Visualizar Questionários</h2>
-                    <p>Selecione uma opção no menu lateral para começar.</p>
+                    <h2>📋 Respostas do Questionário</h2>
+                    <div class="quest-container">
+                        <?php
+                        // Mapeamento de nomes amigáveis para as perguntas
+                        $perguntasNomes = [
+                            'emocao' => '😢 Emoção ao abrir a cápsula',
+                            'conexao' => '🔗 Conexão com quem você era',
+                            'realizacao' => '🎯 Realização dos planos',
+                            'contato' => '👥 Contato com colegas',
+                            'sentimento_geral' => '💫 Sentimento geral',
+                            'lembranca_especial' => '💝 Lembrança mais especial',
+                            'mudanca' => '🪞 O que mais mudou em você',
+                            'sonho_2015' => '✨ Sonho de 2015',
+                            'amigo_saudade' => '👋 Colega que sentiu mais saudade',
+                            'conselho_passado' => '💬 Conselho para você de 2015',
+                            'mensagem_futuro' => '📬 Mensagem para 2035'
+                        ];
+
+                        if ($resultquest && $resultquest->num_rows > 0) {
+                            while ($quest = $resultquest->fetch_assoc()) {
+                                $questId = $quest['quest_id'];
+                                $nome = htmlspecialchars($quest['user_nome']);
+                                $data = date('d/m/Y H:i', strtotime($quest['quest_data']));
+                                $respostasRaw = $quest['respostas'];
+                                
+                                echo '<div class="quest-card">';
+                                echo '<div class="quest-header" onclick="toggleQuest(' . $questId . ')">';
+                                echo '<div class="quest-info">';
+                                echo '<span class="quest-nome"><i class="material-icons-round">person</i>' . $nome . '</span>';
+                                echo '<span class="quest-data"><i class="material-icons-round">schedule</i>' . $data . '</span>';
+                                echo '</div>';
+                                echo '<i class="material-icons-round expand-icon" id="icon-' . $questId . '">expand_more</i>';
+                                echo '</div>';
+                                
+                                echo '<div class="quest-body" id="quest-body-' . $questId . '">';
+                                
+                                if ($respostasRaw) {
+                                    $respostasArray = explode('|||', $respostasRaw);
+                                    
+                                    // Separar respostas de nota e texto
+                                    $notasHtml = '';
+                                    $textosHtml = '';
+                                    
+                                    foreach ($respostasArray as $resposta) {
+                                        $partes = explode(':::', $resposta);
+                                        if (count($partes) >= 3) {
+                                            $pergunta = $partes[0];
+                                            $nota = $partes[1];
+                                            $texto = $partes[2];
+                                            
+                                            $nomeAmigavel = $perguntasNomes[$pergunta] ?? $pergunta;
+                                            
+                                            if ($nota !== '') {
+                                                // Resposta de nota (0-5)
+                                                $notasHtml .= '<div class="resposta-item resposta-nota">';
+                                                $notasHtml .= '<span class="pergunta-label">' . $nomeAmigavel . '</span>';
+                                                $notasHtml .= '<div class="nota-display">';
+                                                for ($i = 0; $i <= 5; $i++) {
+                                                    $activeClass = ($i == $nota) ? 'nota-ativa' : '';
+                                                    $notasHtml .= '<span class="nota-bolinha ' . $activeClass . '">' . $i . '</span>';
+                                                }
+                                                $notasHtml .= '</div>';
+                                                $notasHtml .= '</div>';
+                                            } elseif ($texto !== '') {
+                                                // Resposta de texto
+                                                $textosHtml .= '<div class="resposta-item resposta-texto">';
+                                                $textosHtml .= '<span class="pergunta-label">' . $nomeAmigavel . '</span>';
+                                                $textosHtml .= '<p class="texto-resposta">' . htmlspecialchars($texto) . '</p>';
+                                                $textosHtml .= '</div>';
+                                            }
+                                        }
+                                    }
+                                    
+                                    // Exibir notas primeiro
+                                    if ($notasHtml) {
+                                        echo '<div class="respostas-secao">';
+                                        echo '<h4><i class="material-icons-round">star</i> Avaliações</h4>';
+                                        echo $notasHtml;
+                                        echo '</div>';
+                                    }
+                                    
+                                    // Depois textos
+                                    if ($textosHtml) {
+                                        echo '<div class="respostas-secao">';
+                                        echo '<h4><i class="material-icons-round">chat</i> Respostas Escritas</h4>';
+                                        echo $textosHtml;
+                                        echo '</div>';
+                                    }
+                                } else {
+                                    echo '<p class="sem-respostas">Nenhuma resposta registrada.</p>';
+                                }
+                                
+                                echo '</div>'; // quest-body
+                                echo '</div>'; // quest-card
+                            }
+                        } else {
+                            echo '<div class="sem-questionarios">';
+                            echo '<i class="material-icons-round">inbox</i>';
+                            echo '<p>Nenhum questionário enviado ainda.</p>';
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div id="div_galeria">
                     <h2>Posts Cadastrados</h2>
@@ -193,6 +310,22 @@ $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
 
         <script src="../assets/js/sidebar.js"></script>
         <script src="../assets/js/admin.js"></script>
+        
+        <script>
+        // Função para expandir/colapsar questionários
+        function toggleQuest(id) {
+            const body = document.getElementById('quest-body-' + id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (body.classList.contains('quest-expanded')) {
+                body.classList.remove('quest-expanded');
+                icon.textContent = 'expand_more';
+            } else {
+                body.classList.add('quest-expanded');
+                icon.textContent = 'expand_less';
+            }
+        }
+        </script>
         
         <script> // Codigo pras notificações
         function showDeslogar() {
@@ -300,6 +433,49 @@ $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
                             timerProgressBar: true    // barrinha embaixo
                             });";
                     break;
+                                case 10:
+                echo "Swal.fire({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: 'Post excluído com sucesso.',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                        background: '#fef7e8',
+                        color: '#333333'
+                        });";
+                break;
+            case 11:
+                echo "Swal.fire({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Erro ao excluir o post.',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                        background: '#fef7e8',
+                        color: '#333333'
+                        });";
+                break;
+            case 99:
+                echo "Swal.fire({
+                        toast: true,
+                        position: 'bottom-end',
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Acesso não autorizado.',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                        background: '#fef7e8',
+                        color: '#333333'
+                        });";
+                break;
+
                 default:
                     echo "Swal.fire({
                             toast: true,
@@ -425,6 +601,185 @@ $resultpost = $conn->query("SELECT * FROM post ORDER BY data_publicacao DESC");
                 }
             }
         });
+        
+        </script>
+        <script>
+            
+function excluirPost(postId) {
+    Swal.fire({
+        title: 'Excluir Post?',
+        text: 'Esta ação não pode ser desfeita!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#F44336',
+        cancelButtonColor: '#9E9E9E',
+        background: '#fef7e8',
+        color: '#333333'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '../scripts/del_post.php?id=' + postId;
+        }
+    });
+    
+}
+
+// Função para editar post
+function editarPost(postId) {
+    // Buscar dados do post via AJAX
+    fetch('../scripts/buscar_post.php?id=' + postId)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarFormularioEdicao(data.post);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Não foi possível carregar os dados do post.',
+                    background: '#fef7e8',
+                    color: '#333333'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Erro ao conectar com o servidor.',
+                background: '#fef7e8',
+                color: '#333333'
+            });
+        });
+}
+
+// Função para mostrar formulário de edição
+function mostrarFormularioEdicao(post) {
+    const imgSrc = post.imagem ? '../' + post.imagem : '';
+    
+    Swal.fire({
+        title: 'Editar Post',
+        html: `
+            <form id="form-editar" class="swal-form-editar">
+                <input type="hidden" id="edit_post_id" value="${post.id}">
+                
+                <div class="swal-campo">
+                    <label for="edit_tipo_post">Tipo de Post</label>
+                    <select id="edit_tipo_post" class="swal2-select">
+                        <option value="post_geral" ${post.tipo_post === 'post_geral' ? 'selected' : ''}>Post Geral</option>
+                        <option value="galeria" ${post.tipo_post === 'galeria' ? 'selected' : ''}>Galeria</option>
+                    </select>
+                </div>
+                
+                <div class="swal-campo">
+                    <label for="edit_conteudo">Texto</label>
+                    <textarea id="edit_conteudo" class="swal2-textarea" rows="4">${post.conteudo || ''}</textarea>
+                </div>
+                
+                <div class="swal-campo">
+                    <label>Imagem Atual</label>
+                    <div class="swal-preview">
+                        ${imgSrc ? `<img src="${imgSrc}" alt="Imagem atual" style="max-width: 200px; max-height: 150px; border-radius: 8px;">` : '<p>Sem imagem</p>'}
+                    </div>
+                </div>
+                
+                <div class="swal-campo">
+                    <label for="edit_imagem">Nova Imagem (opcional)</label>
+                    <input type="file" id="edit_imagem" class="swal2-file" accept="image/*">
+                </div>
+                
+                <div class="swal-campo">
+                    <label for="edit_data">Data</label>
+                    <input type="datetime-local" id="edit_data" class="swal2-input" value="${formatarDataParaInput(post.data_publicacao)}">
+                </div>
+            </form>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Salvar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#4CAF50',
+        cancelButtonColor: '#9E9E9E',
+        background: '#fef7e8',
+        color: '#333333',
+        width: '90%',
+        maxWidth: '500px',
+        customClass: {
+            popup: 'swal-popup-editar'
+        },
+        preConfirm: () => {
+            const formData = new FormData();
+            formData.append('id', document.getElementById('edit_post_id').value);
+            formData.append('tipo_post', document.getElementById('edit_tipo_post').value);
+            formData.append('conteudo', document.getElementById('edit_conteudo').value);
+            formData.append('data_publicacao', document.getElementById('edit_data').value);
+            
+            const novaImagem = document.getElementById('edit_imagem').files[0];
+            if (novaImagem) {
+                formData.append('imagem', novaImagem);
+            }
+            
+            return formData;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            enviarEdicao(result.value);
+        }
+    });
+}
+
+// Função para formatar data para input datetime-local
+function formatarDataParaInput(dataStr) {
+    if (!dataStr) return '';
+    const data = new Date(dataStr);
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+    const hora = String(data.getHours()).padStart(2, '0');
+    const minuto = String(data.getMinutes()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}T${hora}:${minuto}`;
+}
+
+// Função para enviar edição via AJAX
+function enviarEdicao(formData) {
+    fetch('../scripts/edit_post.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: 'Post atualizado com sucesso.',
+                background: '#fef7e8',
+                color: '#333333'
+            }).then(() => {
+                location.reload();
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: data.message || 'Erro ao atualizar o post.',
+                background: '#fef7e8',
+                color: '#333333'
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Erro ao conectar com o servidor.',
+            background: '#fef7e8',
+            color: '#333333'
+        });
+    });
+}
         </script>
 </body>
 

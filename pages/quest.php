@@ -53,124 +53,20 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     
     <main>
         <form action="../scripts/proc_quest.php" method="POST" class="quest-form">
-            <h2>Questionário de Satisfação</h2>
-            <p>Agradecemos por participar! Por favor, avalie os seguintes pontos de 0 (péssimo) a 5 (excelente).</p>
+            <h2>💌 Questionário da Cápsula do Tempo</h2>
+            <p>Passaram-se 10 anos desde 2015... Queremos saber como você se sente ao reencontrar memórias do passado. Responda com o coração! 💫</p>
 
             <div class="form-group">
                 <label for="nome">Seu Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome" placeholder="Como você gostaria de ser lembrado(a)?" required>
             </div>
 
-            <div class="form-group">
-                <label>Qual seu nível de satisfação geral com o evento?</label>
-                <div class="radio-group">
-                    <input type="radio" id="satisf-geral-0" name="satisf_geral" value="0" required><label for="satisf-geral-0">0</label>
-                    <input type="radio" id="satisf-geral-1" name="satisf_geral" value="1"><label for="satisf-geral-1">1</label>
-                    <input type="radio" id="satisf-geral-2" name="satisf_geral" value="2"><label for="satisf-geral-2">2</label>
-                    <input type="radio" id="satisf-geral-3" name="satisf_geral" value="3"><label for="satisf-geral-3">3</label>
-                    <input type="radio" id="satisf-geral-4" name="satisf_geral" value="4"><label for="satisf-geral-4">4</label>
-                    <input type="radio" id="satisf-geral-5" name="satisf_geral" value="5"><label for="satisf-geral-5">5</label>
-                </div>
-            </div>
+            <!-- SEÇÃO: MEMÓRIAS E EMOÇÕES -->
+            <div class="section-title">🕰️ Memórias e Emoções</div>
 
             <div class="form-group">
-                <label>Como você avalia a organização do evento?</label>
-                <div class="radio-group">
-                    <input type="radio" id="organizacao-0" name="organizacao" value="0" required><label for="organizacao-0">0</label>
-                    <input type="radio" id="organizacao-1" name="organizacao" value="1"><label for="organizacao-1">1</label>
-                    <input type="radio" id="organizacao-2" name="organizacao" value="2"><label for="organizacao-2">2</label>
-                    <input type="radio" id="organizacao-3" name="organizacao" value="3"><label for="organizacao-3">3</label>
-                    <input type="radio" id="organizacao-4" name="organizacao" value="4"><label for="organizacao-4">4</label>
-                    <input type="radio" id="organizacao-5" name="organizacao" value="5"><label for="organizacao-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Como você avalia as apresentações do evento?</label>
-                <div class="radio-group">
-                    <input type="radio" id="apresentacoes-0" name="apresentacoes" value="0" required><label for="apresentacoes-0">0</label>
-                    <input type="radio" id="apresentacoes-1" name="apresentacoes" value="1"><label for="apresentacoes-1">1</label>
-                    <input type="radio" id="apresentacoes-2" name="apresentacoes" value="2"><label for="apresentacoes-2">2</label>
-                    <input type="radio" id="apresentacoes-3" name="apresentacoes" value="3"><label for="apresentacoes-3">3</label>
-                    <input type="radio" id="apresentacoes-4" name="apresentacoes" value="4"><label for="apresentacoes-4">4</label>
-                    <input type="radio" id="apresentacoes-5" name="apresentacoes" value="5"><label for="apresentacoes-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Como você avalia o local e a estrutura?</label>
-                <div class="radio-group">
-                    <input type="radio" id="local-0" name="local" value="0" required><label for="local-0">0</label>
-                    <input type="radio" id="local-1" name="local" value="1"><label for="local-1">1</label>
-                    <input type="radio" id="local-2" name="local" value="2"><label for="local-2">2</label>
-                    <input type="radio" id="local-3" name="local" value="3"><label for="local-3">3</label>
-                    <input type="radio" id="local-4" name="local" value="4"><label for="local-4">4</label>
-                    <input type="radio" id="local-5" name="local" value="5"><label for="local-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Como você avalia a divulgação do evento?</label>
-                <div class="radio-group">
-                    <input type="radio" id="divulgacao-0" name="divulgacao" value="0" required><label for="divulgacao-0">0</label>
-                    <input type="radio" id="divulgacao-1" name="divulgacao" value="1"><label for="divulgacao-1">1</label>
-                    <input type="radio" id="divulgacao-2" name="divulgacao" value="2"><label for="divulgacao-2">2</label>
-                    <input type="radio" id="divulgacao-3" name="divulgacao" value="3"><label for="divulgacao-3">3</label>
-                    <input type="radio" id="divulgacao-4" name="divulgacao" value="4"><label for="divulgacao-4">4</label>
-                    <input type="radio" id="divulgacao-5" name="divulgacao" value="5"><label for="divulgacao-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>O quanto você se sentiu nostálgico(a) ou com 'saudade' durante o evento?</label>
-                <div class="radio-group">
-                    <input type="radio" id="nostalgia-0" name="nostalgia" value="0" required><label for="nostalgia-0">0</label>
-                    <input type="radio" id="nostalgia-1" name="nostalgia" value="1"><label for="nostalgia-1">1</label>
-                    <input type="radio" id="nostalgia-2" name="nostalgia" value="2"><label for="nostalgia-2">2</label>
-                    <input type="radio" id="nostalgia-3" name="nostalgia" value="3"><label for="nostalgia-3">3</label>
-                    <input type="radio" id="nostalgia-4" name="nostalgia" value="4"><label for="nostalgia-4">4</label>
-                    <input type="radio" id="nostalgia-5" name="nostalgia" value="5"><label for="nostalgia-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>O quanto a cápsula fez você lembrar de fatos ou sentimentos que já tinha esquecido?</label>
-                <div class="radio-group">
-                    <input type="radio" id="lembrar-0" name="lembrar" value="0" required><label for="lembrar-0">0</label>
-                    <input type="radio" id="lembrar-1" name="lembrar" value="1"><label for="lembrar-1">1</label>
-                    <input type="radio" id="lembrar-2" name="lembrar" value="2"><label for="lembrar-2">2</label>
-                    <input type="radio" id="lembrar-3" name="lembrar" value="3"><label for="lembrar-3">3</label>
-                    <input type="radio" id="lembrar-4" name="lembrar" value="4"><label for="lembrar-4">4</label>
-                    <input type="radio" id="lembrar-5" name="lembrar" value="5"><label for="lembrar-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>O quanto você se sentiu conectado(a) com a pessoa que você era há 10 anos?</label>
-                <div class="radio-group">
-                    <input type="radio" id="conectado-0" name="conectado" value="0" required><label for="conectado-0">0</label>
-                    <input type="radio" id="conectado-1" name="conectado" value="1"><label for="conectado-1">1</label>
-                    <input type="radio" id="conectado-2" name="conectado" value="2"><label for="conectado-2">2</label>
-                    <input type="radio" id="conectado-3" name="conectado" value="3"><label for="conectado-3">3</label>
-                    <input type="radio" id="conectado-4" name="conectado" value="4"><label for="conectado-4">4</label>
-                    <input type="radio" id="conectado-5" name="conectado" value="5"><label for="conectado-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>O quanto este evento fez você refletir sobre o quanto você mudou e amadureceu desde 2015?</label>
-                <div class="radio-group">
-                    <input type="radio" id="refletir-0" name="refletir" value="0" required><label for="refletir-0">0</label>
-                    <input type="radio" id="refletir-1" name="refletir" value="1"><label for="refletir-1">1</label>
-                    <input type="radio" id="refletir-2" name="refletir" value="2"><label for="refletir-2">2</label>
-                    <input type="radio" id="refletir-3" name="refletir" value="3"><label for="refletir-3">3</label>
-                    <input type="radio" id="refletir-4" name="refletir" value="4"><label for="refletir-4">4</label>
-                    <input type="radio" id="refletir-5" name="refletir" value="5"><label for="refletir-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Qual foi a intensidade da emoção que você sentiu no momento da abertura da cápsula?</label>
+                <label>O quanto você se emocionou ao abrir a cápsula do tempo?</label>
+                <p class="hint">0 = Não me emocionei | 5 = Chorei muito</p>
                 <div class="radio-group">
                     <input type="radio" id="emocao-0" name="emocao" value="0" required><label for="emocao-0">0</label>
                     <input type="radio" id="emocao-1" name="emocao" value="1"><label for="emocao-1">1</label>
@@ -182,31 +78,98 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
             </div>
 
             <div class="form-group">
-                <label>O quanto você sentiu que a emoção das outras pessoas contagiou o ambiente?</label>
+                <label for="lembranca_especial">Qual foi a lembrança mais especial que você reencontrou hoje?</label>
+                <textarea id="lembranca_especial" name="lembranca_especial" rows="3" placeholder="Pode ser uma foto, um bilhete, um objeto... conte pra gente!" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto você se sentiu conectado(a) com a pessoa que você era em 2015?</label>
+                <p class="hint">0 = Nem me reconheci | 5 = Ainda sou a mesma pessoa</p>
                 <div class="radio-group">
-                    <input type="radio" id="contagio-0" name="contagio" value="0" required><label for="contagio-0">0</label>
-                    <input type="radio" id="contagio-1" name="contagio" value="1"><label for="contagio-1">1</label>
-                    <input type="radio" id="contagio-2" name="contagio" value="2"><label for="contagio-2">2</label>
-                    <input type="radio" id="contagio-3" name="contagio" value="3"><label for="contagio-3">3</label>
-                    <input type="radio" id="contagio-4" name="contagio" value="4"><label for="contagio-4">4</label>
-                    <input type="radio" id="contagio-5" name="contagio" value="5"><label for="contagio-5">5</label>
+                    <input type="radio" id="conexao-0" name="conexao" value="0" required><label for="conexao-0">0</label>
+                    <input type="radio" id="conexao-1" name="conexao" value="1"><label for="conexao-1">1</label>
+                    <input type="radio" id="conexao-2" name="conexao" value="2"><label for="conexao-2">2</label>
+                    <input type="radio" id="conexao-3" name="conexao" value="3"><label for="conexao-3">3</label>
+                    <input type="radio" id="conexao-4" name="conexao" value="4"><label for="conexao-4">4</label>
+                    <input type="radio" id="conexao-5" name="conexao" value="5"><label for="conexao-5">5</label>
+                </div>
+            </div>
+
+            <!-- SEÇÃO: REFLEXÕES PESSOAIS -->
+            <div class="section-title">🪞 Reflexões Pessoais</div>
+
+            <div class="form-group">
+                <label for="mudanca">O que mais mudou em você nesses 10 anos?</label>
+                <textarea id="mudanca" name="mudanca" rows="3" placeholder="Física, personalidade, sonhos, forma de pensar..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="sonho_2015">Você lembra de algum sonho que tinha em 2015? Ele se realizou?</label>
+                <textarea id="sonho_2015" name="sonho_2015" rows="3" placeholder="Conte sobre seus sonhos de 10 anos atrás..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>O quanto você realizou dos planos que tinha quando era mais novo(a)?</label>
+                <p class="hint">0 = Nada se realizou | 5 = Realizei tudo e mais</p>
+                <div class="radio-group">
+                    <input type="radio" id="realizacao-0" name="realizacao" value="0" required><label for="realizacao-0">0</label>
+                    <input type="radio" id="realizacao-1" name="realizacao" value="1"><label for="realizacao-1">1</label>
+                    <input type="radio" id="realizacao-2" name="realizacao" value="2"><label for="realizacao-2">2</label>
+                    <input type="radio" id="realizacao-3" name="realizacao" value="3"><label for="realizacao-3">3</label>
+                    <input type="radio" id="realizacao-4" name="realizacao" value="4"><label for="realizacao-4">4</label>
+                    <input type="radio" id="realizacao-5" name="realizacao" value="5"><label for="realizacao-5">5</label>
+                </div>
+            </div>
+
+            <!-- SEÇÃO: AMIZADES E CONEXÕES -->
+            <div class="section-title">👥 Amizades e Conexões</div>
+
+            <div class="form-group">
+                <label for="amigo_saudade">De qual colega da turma de 2015 você sentiu mais saudade?</label>
+                <input type="text" id="amigo_saudade" name="amigo_saudade" placeholder="Nome do(a) colega...">
+            </div>
+
+            <div class="form-group">
+                <label>Você ainda mantém contato com os colegas de 2015?</label>
+                <p class="hint">0 = Perdi contato com todos | 5 = Falo com todos frequentemente</p>
+                <div class="radio-group">
+                    <input type="radio" id="contato-0" name="contato" value="0" required><label for="contato-0">0</label>
+                    <input type="radio" id="contato-1" name="contato" value="1"><label for="contato-1">1</label>
+                    <input type="radio" id="contato-2" name="contato" value="2"><label for="contato-2">2</label>
+                    <input type="radio" id="contato-3" name="contato" value="3"><label for="contato-3">3</label>
+                    <input type="radio" id="contato-4" name="contato" value="4"><label for="contato-4">4</label>
+                    <input type="radio" id="contato-5" name="contato" value="5"><label for="contato-5">5</label>
+                </div>
+            </div>
+
+            <!-- SEÇÃO: MENSAGEM PARA O FUTURO -->
+            <div class="section-title">✨ Mensagem para o Futuro</div>
+
+            <div class="form-group">
+                <label for="conselho_passado">Se pudesse voltar no tempo, que conselho daria para você de 2015?</label>
+                <textarea id="conselho_passado" name="conselho_passado" rows="4" placeholder="O que você gostaria de ter ouvido quando era mais jovem?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="mensagem_futuro">Deixe uma mensagem para você daqui a 10 anos (2035):</label>
+                <textarea id="mensagem_futuro" name="mensagem_futuro" rows="4" placeholder="O que você espera para o futuro? O que deseja lembrar?"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>No geral, como você se sentiu participando deste momento especial?</label>
+                <p class="hint">0 = Indiferente | 5 = Foi um dos melhores momentos da minha vida</p>
+                <div class="radio-group">
+                    <input type="radio" id="sentimento_geral-0" name="sentimento_geral" value="0" required><label for="sentimento_geral-0">0</label>
+                    <input type="radio" id="sentimento_geral-1" name="sentimento_geral" value="1"><label for="sentimento_geral-1">1</label>
+                    <input type="radio" id="sentimento_geral-2" name="sentimento_geral" value="2"><label for="sentimento_geral-2">2</label>
+                    <input type="radio" id="sentimento_geral-3" name="sentimento_geral" value="3"><label for="sentimento_geral-3">3</label>
+                    <input type="radio" id="sentimento_geral-4" name="sentimento_geral" value="4"><label for="sentimento_geral-4">4</label>
+                    <input type="radio" id="sentimento_geral-5" name="sentimento_geral" value="5"><label for="sentimento_geral-5">5</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>O quanto este evento trouxe uma sensação de 'fechamento de ciclo' ou de paz com o passado?</label>
-                <div class="radio-group">
-                    <input type="radio" id="fechamento-0" name="fechamento" value="0" required><label for="fechamento-0">0</label>
-                    <input type="radio" id="fechamento-1" name="fechamento" value="1"><label for="fechamento-1">1</label>
-                    <input type="radio" id="fechamento-2" name="fechamento" value="2"><label for="fechamento-2">2</label>
-                    <input type="radio" id="fechamento-3" name="fechamento" value="3"><label for="fechamento-3">3</label>
-                    <input type="radio" id="fechamento-4" name="fechamento" value="4"><label for="fechamento-4">4</label>
-                    <input type="radio" id="fechamento-5" name="fechamento" value="5"><label for="fechamento-5">5</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <button type="submit">Enviar Avaliação</button>
+                <button type="submit">💌 Enviar Minhas Memórias</button>
             </div>
         </form>
     </main>

@@ -93,5 +93,17 @@ if (preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i'
 
     <footer>capsula 2015 - 2025</footer>
     <script src="../assets/js/sidebar.js"></script>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+    
+        images.forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = '../assets/img/content/placeholder.jpeg';
+            this.alt = 'Imagem não encontrada';
+            });
+        });
+    });
+    </script>
 </body>
 </html>

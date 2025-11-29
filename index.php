@@ -225,15 +225,15 @@ if (!preg_match('/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
     }
     ?>
     document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img');
+        const images = document.querySelectorAll('img');
     
-    images.forEach(img => {
+        images.forEach(img => {
         img.addEventListener('error', function() {
-            this.src = '../assets/img/content/placeholder.jpeg';
+            this.src = 'assets/img/ui/placeholder.png';
             this.alt = 'Imagem não encontrada';
+            });
         });
     });
-});
     </script>
 </body>
 
